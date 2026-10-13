@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Site Archivexa : pages statiques animées, salle de formation en direct et API (abonnés, rendez-vous, articles, sessions live, admin).",
   "engines": {
-    "node": ">=20"
+    "node": "22.x"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.1",
