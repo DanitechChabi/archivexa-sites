@@ -17,7 +17,7 @@ Les pages sont en HTML statique (`public/`). L'API tourne en fonctions Vercel (`
    git add .
    git commit -m "Site Archivexa"
    git branch -M main
-   git remote add origin https://github.com/DanitechChabi/archivexa-site.git
+   git remote add origin https://github.com/DanitechChabi/archivexa-sites.git
    git push -u origin main
    ```
 2. **Importer le projet.** Sur vercel.com : *Add New → Project*, choisis le dépôt. Laisse *Framework Preset* sur **Other**. Ne change ni la commande de build ni le dossier de sortie.
@@ -96,20 +96,15 @@ public/            pages et fichiers statiques
   config.js        réglages (contact, entreprise)
   favicon.svg, og.png, logos
 api/
-  subscribe.js     POST  inscription à la lettre
-  unsubscribe.js   POST  désinscription par lien signé
-  requests.js      POST  demande de rendez-vous
-  posts.js         GET   articles publiés (?all=1 avec session admin : brouillons inclus)
-  admin/login.js   POST  connexion admin
-  admin/data.js    GET   abonnés + demandes (admin)
-  admin/posts.js   PUT / DELETE  articles (admin)
-  admin/subscribers.js DELETE retrait d'un abonné (admin)
-  live/sessions.js GET   sessions à venir (public)
-  live/token.js    POST  jeton d'accès à la salle (formateur si session admin)
-  live/admin.js    GET / PUT / DELETE  sessions et émargements (admin)
-  live/attendance.js POST feuille d'émargement (admin)
-  live/certificate.js POST / GET  émission et vérification des attestations
-  _lib/            stockage Blob, sécurité, notifications
+  index.js         point d'entrée unique de l'API (le plan Hobby limite à 12 fonctions) ;
+                   vercel.json redirige /api/<route> vers lui
+  _r/subscribe.js     POST  inscription à la lettre
+  _r/unsubscribe.js   POST  désinscription par lien signé
+  _r/requests.js      POST  demande de rendez-vous
+  _r/posts.js         GET   articles publiés (?all=1 avec session admin : brouillons inclus)
+  _r/admin/           connexion, abonnés + demandes, articles, retrait d'un abonné
+  _r/live/            sessions, jetons d'accès, émargement, attestations
+  _r/_lib/            stockage Blob, sécurité, notifications
 ```
 
 Les animations chargent GSAP, Lenis, le client LiveKit et le générateur de QR code depuis jsDelivr, et les polices depuis Google Fonts.
