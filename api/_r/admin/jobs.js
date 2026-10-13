@@ -41,7 +41,13 @@ export default async function handler(req, res) {
   if (!isAdmin(req)) return send(res, 401, { error: 'unauthorized' });
   try {
     if (req.method === 'GET') {
-      const [jobs, ts] = await Promise.all([listJSON('jobs/'), talents()]);
+      const [all, ts] = await Promise.all([listJSON('jobs/'), talents()]);
+      // offers (and recruiter contacts) are deleted 2 years after their deadline, or after their last update without deadline
+      const limit = Date.now() - 2 * 365 * 86400000, jobs = [];
+      for (const it of all) {
+        const ref = new Date(it.data.deadline ? it.data.deadline + 'T23:59:59' : it.data.updatedAt || it.data.createdAt || 0).getTime();
+        if (ref < limit) await remove(it.pathname); else jobs.push(it);
+      }
       return send(res, 200, {
         mail: mailReady(),
         jobs: jobs
@@ -62,7 +68,7 @@ export default async function handler(req, res) {
       const job = normalizeJob(b);
       if (!job.title) return send(res, 400, { error: 'missing_title' });
       const now = new Date().toISOString();
-      await writeJSON('jobs/' + id + '.json', { ...job, createdAt: old?.createdAt || now, updatedAt: now, sent: old?.sent || [], sentAt: old?.sentAt || null });
+      await writeJSON('jobs/' + id + '.json', { ...job, contact: old?.contact || null, createdAt: old?.createdAt || now, updatedAt: now, sent: old?.sent || [], sentAt: old?.sentAt || null });
       return send(res, 200, { ok: true, id });
     }
     if (req.method === 'DELETE') {

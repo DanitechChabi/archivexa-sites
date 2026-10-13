@@ -54,7 +54,7 @@ export function normalizeJob(b) {
     desc: String(b.desc ?? '').replace(/\u0000/g, '').trim().slice(0, 4000),
     apply: /^https?:\/\//i.test(apply) || EMAIL_RE.test(apply) ? apply : '',
     deadline: /^\d{4}-\d{2}-\d{2}$/.test(b.deadline) ? b.deadline : '',
-    status: b.status === 'closed' ? 'closed' : 'open',
+    status: ['closed', 'pending'].includes(b.status) ? b.status : 'open',
   };
 }
 
@@ -76,6 +76,6 @@ export function matches(job, t) {
 }
 
 export function publicJob(id, j) {
-  const { sent, sentAt, ...rest } = j;
+  const { sent, sentAt, contact, ...rest } = j;
   return { id, ...rest };
 }

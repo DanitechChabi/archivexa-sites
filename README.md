@@ -5,7 +5,7 @@ Site animé d'Archivexa (archives, GED, plateformes numériques) avec :
 - `/` : le site complet (services, méthode, plateformes, formations, blog, rendez-vous, espace admin) ;
 - `/lancement` : la page d'attente avec inscription « Me prévenir » ;
 - `/live` : Archivexa Live, la salle de formation en direct ;
-- `/emplois` : la page Emplois, où les archivistes déposent leur fiche et leur CV ;
+- `/emplois` : la page Emplois, avec deux parcours : les candidats déposent leur profil et leur CV, les recruteurs proposent une offre ;
 - une API qui enregistre les abonnés, les demandes de rendez-vous et les articles du blog.
 
 Les pages sont en HTML statique (`public/`). L'API tourne en fonctions Vercel (`api/`). Les données sont stockées dans un **Blob store privé** Vercel, un fichier JSON par abonné, demande ou article.
@@ -77,8 +77,8 @@ La page `/emplois` présente les offres ouvertes et un formulaire de fiche : ide
 
 Dans l'espace admin :
 
-- **Talents** : recherche, filtre par spécialité, téléchargement du CV, suppression, export CSV. Les fiches non mises à jour depuis 2 ans sont supprimées automatiquement à l'ouverture de cet onglet.
-- **Offres** : publier une offre (poste, organisation, lieu, contrat, expérience minimale, spécialités, description, lien ou e-mail pour postuler, date limite). Elle apparaît aussitôt sur `/emplois` et disparaît après la date limite ou quand tu la fermes.
+- **Talents** : recherche, filtre par spécialité, téléchargement du CV, suppression, export CSV. Les fiches non mises à jour depuis 2 ans sont supprimées automatiquement à l'ouverture de l'admin. Les offres sont supprimées 2 ans après leur date limite.
+- **Offres** : les offres proposées par les recruteurs depuis `/emplois` arrivent avec le badge « À valider » et les coordonnées du recruteur. « Valider et publier » les met en ligne. Tu peux aussi publier une offre (poste, organisation, lieu, contrat, expérience minimale, spécialités, description, lien ou e-mail pour postuler, date limite). Elle apparaît aussitôt sur `/emplois` et disparaît après la date limite ou quand tu la fermes.
 - **Profils** montre les talents qui correspondent : au moins une spécialité commune, contrat souhaité (ou aucun préféré), zone souhaitée (ou « Toutes les zones ») et expérience suffisante. Tu peux copier les adresses ou les exporter.
 - **Envoyer** expédie l'offre par e-mail aux profils correspondants qui ne l'ont pas encore reçue. Chaque e-mail contient un lien qui supprime la fiche du talent.
 
