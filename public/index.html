@@ -662,6 +662,31 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .lv-form label{display:grid;gap:6px;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .lv-form input,.lv-form select{background:var(--night-2);border:1px solid var(--line);border-radius:12px;color:var(--ink);font-family:var(--f-body);font-size:15px;letter-spacing:0;text-transform:none;padding:11px 12px;min-width:0}
 .lv-form .full{grid-column:1/-1}
+.jb-form textarea{background:var(--night-2);border:1px solid var(--line);border-radius:12px;color:var(--ink);font-family:var(--f-body);font-size:15px;letter-spacing:0;text-transform:none;padding:11px 12px;resize:vertical;line-height:1.5}
+.jb-l{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.jb-form .chip{padding:8px 13px;font-size:13.5px}
+.asel{background:var(--night-2);border:1px solid var(--line);border-radius:12px;color:var(--ink);font:inherit;font-size:14px;padding:11px 12px}
+.atool .grow{flex:1}
+.mail-warn{border:1px solid color-mix(in srgb,#ffb066 45%,var(--line));background:color-mix(in srgb,#ffb066 8%,transparent);border-radius:16px;padding:14px 16px;font-size:14px;margin-bottom:18px;color:color-mix(in srgb,var(--ink) 85%,var(--muted))}
+.mail-warn b{color:#ffcf99}
+.tlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));gap:12px}
+.tal{border:1px solid var(--line);border-radius:18px;padding:18px;background:var(--night-2);display:grid;gap:10px;font-size:14px;align-content:start}
+.tal .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.tal .top b{font-size:17px;display:block}
+.tal .top small{color:var(--muted);font-size:13px}
+.tal .k{color:var(--muted)}
+.tal .tags{display:flex;flex-wrap:wrap;gap:5px}
+.tal .about{color:color-mix(in srgb,var(--ink) 80%,var(--muted));font-size:13.5px;border-left:2px solid var(--line);padding-left:10px}
+.tal .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.jrow{border:1px solid var(--line);border-radius:16px;background:var(--night-2);overflow:hidden}
+.jrow .lv-row{border:0;border-radius:0;background:none}
+.jrow .badge{font-family:var(--f-mono);font-size:10.5px;padding:3px 8px;border-radius:6px;margin-left:8px;vertical-align:2px}
+.jrow .badge.on{background:color-mix(in srgb,#3ccf8e 20%,transparent);color:#9ff0c8}
+.jrow .badge.off{background:var(--line);color:var(--muted)}
+.jmatch{border-top:1px dashed var(--line);padding:14px 16px;display:grid;gap:8px;font-size:14px}
+.jmatch .m{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)}
+.jmatch .m:last-of-type{border-bottom:0}
+.jmatch .m span{color:var(--muted);font-size:13px}
 .lv-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:var(--night-2)}
 .lv-row .t b{display:block}
 .lv-row .t small{color:var(--muted);font-family:var(--f-mono);font-size:11.5px}
@@ -765,6 +790,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
       <li><a href="#fondateur">Fondateur</a></li>
       <li><a href="#formations" data-fm>Formations</a></li>
       <li><a href="#blog" data-blog>Blog</a></li>
+      <li><a href="/emplois" data-jobs>Emplois</a></li>
     </ul>
     <a class="btn btn-main magnetic" href="#rendez-vous" data-rdv><span class="lbl"><span>Rendez-vous</span><span>Rendez-vous</span></span></a>
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="mmenu" aria-label="Menu"><i></i><i></i><i></i></button>
@@ -777,8 +803,9 @@ table.tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
     <a href="#produits"><span>Plateformes</span><small>03</small></a>
     <a href="#formations" data-fm><span>Formations</span><small>04</small></a>
     <a href="#blog" data-blog><span>Blog</span><small>05</small></a>
+    <a href="/emplois" data-jobs><span>Emplois</span><small>06</small></a>
     <a href="/live" data-live target="_blank" rel="noopener"><span>Live</span><small>LIVE</small></a>
-    <a href="#fondateur"><span>Fondateur</span><small>06</small></a>
+    <a href="#fondateur"><span>Fondateur</span><small>07</small></a>
   </nav>
   <div class="mfoot">
     <a class="btn btn-main" href="#rendez-vous" data-rdv><span class="lbl"><span>Prendre rendez-vous</span><span>Prendre rendez-vous</span></span><span class="arr">→</span></a>
@@ -1182,7 +1209,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
 <footer>
   <div class="wrap">
     <a class="logo" href="#top" aria-label="Archivexa"><svg class="lg" viewBox="0 0 390.5 64" role="img" aria-label="Archivexa"><rect class="lg-bg" width="64" height="64" rx="14" fill="#2f6bff"/><rect class="lg-b1" x="25" y="13" width="14" height="9" rx="2" fill="#a9c6ff"/><rect class="lg-b2" x="17" y="27.5" width="30" height="9" rx="2" fill="#ffffff"/><rect class="lg-b3" x="10" y="42" width="18" height="9" rx="2" fill="#ffffff"/><rect class="lg-b4" x="36" y="42" width="18" height="9" rx="2" fill="#ffffff"/><g class="lg-word"><path class="lg-l" d="M94.03 47.28Q91.59 47.28 89.42 46.89Q87.25 46.5 85.59 45.54Q83.93 44.59 82.99 42.93Q82.05 41.27 82.05 38.72Q82.05 35.3 83.8 33.29Q85.55 31.27 88.78 30.29Q92 29.31 96.41 29Q100.83 28.7 106.15 28.7V27.49Q106.15 25.91 105.41 24.93Q104.66 23.95 103.17 23.49Q101.69 23.03 99.39 23.03Q97.62 23.03 96.11 23.33Q94.6 23.62 93.69 24.24Q92.78 24.85 92.78 25.84V26.31H83.12Q83.06 26.08 83.05 25.88Q83.04 25.69 83.04 25.42Q83.04 22.81 84.96 20.83Q86.88 18.85 90.62 17.75Q94.35 16.65 99.8 16.65Q104.88 16.65 108.45 17.62Q112.02 18.59 113.9 20.71Q115.79 22.83 115.79 26.35V38.4Q115.79 39.37 116.25 39.95Q116.71 40.53 117.63 40.53H120.28V46.26Q119.55 46.56 117.98 46.92Q116.41 47.27 114.51 47.27Q112.05 47.27 110.5 46.73Q108.95 46.19 108.13 45.25Q107.32 44.3 106.98 43.13H106.56Q105.13 44.39 103.24 45.34Q101.35 46.28 99.05 46.78Q96.75 47.28 94.03 47.28ZM96.92 40.9Q98.26 40.9 99.84 40.57Q101.42 40.25 102.87 39.59Q104.31 38.94 105.23 37.94Q106.15 36.93 106.15 35.57V33.85Q101.27 33.85 98.04 34.29Q94.81 34.73 93.24 35.66Q91.66 36.59 91.66 38.11Q91.66 39.23 92.4 39.83Q93.15 40.44 94.37 40.67Q95.58 40.9 96.92 40.9Z" fill="currentColor"/><path class="lg-l" d="M122.83 46.61V17.31H130.66L131.34 22.17H131.79Q132.56 20.49 133.78 19.24Q135.01 17.98 136.64 17.3Q138.28 16.62 140.2 16.62Q141.28 16.62 142.22 16.79Q143.17 16.95 143.92 17.24V25.12H139.73Q137.81 25.12 136.44 25.71Q135.06 26.31 134.18 27.37Q133.31 28.44 132.89 29.84Q132.46 31.23 132.46 32.87V46.61Z" fill="currentColor"/><path class="lg-l" d="M163.72 47.28Q158.18 47.28 154.14 45.59Q150.1 43.91 147.91 40.5Q145.73 37.1 145.73 31.95Q145.73 26.79 147.92 23.39Q150.11 19.99 154.15 18.32Q158.18 16.64 163.72 16.64Q167.33 16.64 170.45 17.39Q173.57 18.14 175.93 19.68Q178.29 21.21 179.59 23.51Q180.9 25.8 180.9 28.87H171.21Q171.21 27.13 170.24 25.9Q169.27 24.67 167.59 24.03Q165.91 23.39 163.71 23.39Q161.01 23.39 159.21 24.34Q157.41 25.3 156.52 27.07Q155.62 28.84 155.62 31.3V32.63Q155.62 35.05 156.54 36.84Q157.46 38.62 159.33 39.58Q161.21 40.54 164.05 40.54Q166.24 40.54 167.93 39.85Q169.63 39.15 170.61 37.89Q171.6 36.63 171.6 35H180.9Q180.9 38.1 179.58 40.42Q178.27 42.74 175.93 44.26Q173.59 45.78 170.46 46.53Q167.33 47.28 163.72 47.28Z" fill="currentColor"/><path class="lg-l" d="M185.83 46.61V6.37H195.46V20.9H195.87Q197.23 19.38 198.96 18.45Q200.68 17.52 202.62 17.08Q204.57 16.65 206.54 16.65Q210.47 16.65 213.12 17.94Q215.77 19.23 217.12 21.83Q218.48 24.44 218.48 28.41V46.61H208.84V29.79Q208.84 28.32 208.44 27.23Q208.04 26.13 207.28 25.42Q206.53 24.72 205.42 24.37Q204.32 24.02 202.89 24.02Q200.83 24.02 199.15 24.88Q197.46 25.75 196.46 27.27Q195.46 28.79 195.46 30.79V46.61Z" fill="currentColor"/><path class="lg-l" d="M224.44 13.22V6.37H234.07V13.22ZM224.44 46.61V17.31H234.07V46.61Z" fill="currentColor"/><path class="lg-l" d="M249.85 46.61 236.7 17.31H247.11L252.3 30.12Q252.65 30.96 253.13 32.32Q253.6 33.68 254.12 35.1Q254.63 36.53 255 37.66H255.45Q255.83 36.54 256.31 35.12Q256.8 33.69 257.29 32.33Q257.78 30.96 258.13 30.08L263.24 17.31H273.22L260.05 46.61Z" fill="currentColor"/><path class="lg-l" d="M293.05 47.28Q287.38 47.28 283.23 45.65Q279.09 44.02 276.84 40.62Q274.59 37.22 274.59 31.97Q274.59 26.81 276.81 23.41Q279.03 20 283.09 18.32Q287.15 16.65 292.67 16.65Q298.37 16.65 302.36 18.29Q306.35 19.93 308.43 23.25Q310.52 26.57 310.52 31.63V33.91H284.59Q284.71 36.3 285.71 37.86Q286.71 39.42 288.59 40.16Q290.48 40.89 293.15 40.89Q294.58 40.89 295.9 40.58Q297.22 40.27 298.27 39.68Q299.31 39.09 299.95 38.24Q300.58 37.39 300.65 36.29H310.42Q310.42 38.84 309.17 40.88Q307.92 42.92 305.61 44.35Q303.31 45.77 300.11 46.52Q296.92 47.28 293.05 47.28ZM284.63 28.64H300.35Q300.35 27.28 299.81 26.25Q299.27 25.21 298.28 24.5Q297.29 23.78 295.93 23.41Q294.58 23.04 292.96 23.04Q290.49 23.04 288.72 23.71Q286.94 24.38 285.92 25.64Q284.9 26.9 284.63 28.64Z" fill="currentColor"/><path class="lg-l" d="M312.16 46.61 325.41 31.25 313.21 17.31H325.25L332.12 25.69H332.44L339.28 17.31H350.6L338.29 31.4L351.34 46.61H339.39L331.62 36.99H331.3L323.52 46.61Z" fill="var(--volt-hi)"/><path class="lg-l" d="M364.2 47.28Q361.76 47.28 359.59 46.89Q357.41 46.5 355.75 45.54Q354.1 44.59 353.16 42.93Q352.22 41.27 352.22 38.72Q352.22 35.3 353.97 33.29Q355.72 31.27 358.94 30.29Q362.17 29.31 366.58 29Q370.99 28.7 376.32 28.7V27.49Q376.32 25.91 375.57 24.93Q374.83 23.95 373.34 23.49Q371.86 23.03 369.55 23.03Q367.79 23.03 366.28 23.33Q364.76 23.62 363.85 24.24Q362.94 24.85 362.94 25.84V26.31H353.29Q353.23 26.08 353.22 25.88Q353.21 25.69 353.21 25.42Q353.21 22.81 355.13 20.83Q357.05 18.85 360.78 17.75Q364.52 16.65 369.97 16.65Q375.05 16.65 378.62 17.62Q382.19 18.59 384.07 20.71Q385.96 22.83 385.96 26.35V38.4Q385.96 39.37 386.41 39.95Q386.87 40.53 387.8 40.53H390.44V46.26Q389.72 46.56 388.15 46.92Q386.58 47.27 384.68 47.27Q382.22 47.27 380.67 46.73Q379.12 46.19 378.3 45.25Q377.49 44.3 377.15 43.13H376.73Q375.3 44.39 373.41 45.34Q371.52 46.28 369.22 46.78Q366.92 47.28 364.2 47.28ZM367.09 40.9Q368.43 40.9 370.01 40.57Q371.59 40.25 373.04 39.59Q374.48 38.94 375.4 37.94Q376.32 36.93 376.32 35.57V33.85Q371.43 33.85 368.21 34.29Q364.98 34.73 363.4 35.66Q361.82 36.59 361.82 38.11Q361.82 39.23 362.57 39.83Q363.32 40.44 364.53 40.67Q365.75 40.9 367.09 40.9Z" fill="currentColor"/></g></svg></a>
-    <nav><a href="#services">Services</a><a href="#methode">Méthode</a><a href="#produits">Plateformes</a><a href="#fondateur">Fondateur</a><a href="#formations" data-fm>Formations</a><a href="#blog" data-blog>Blog</a><a href="#rendez-vous" data-rdv>Rendez-vous</a><a href="/live" data-live target="_blank" rel="noopener">Archivexa Live</a><a href="#admin" data-admin>Espace admin</a></nav>
+    <nav><a href="#services">Services</a><a href="#methode">Méthode</a><a href="#produits">Plateformes</a><a href="#fondateur">Fondateur</a><a href="#formations" data-fm>Formations</a><a href="#blog" data-blog>Blog</a><a href="/emplois" data-jobs>Emplois</a><a href="#rendez-vous" data-rdv>Rendez-vous</a><a href="/live" data-live target="_blank" rel="noopener">Archivexa Live</a><a href="#admin" data-admin>Espace admin</a></nav>
     <div class="flegal"><a href="/legal" data-legal target="_blank" rel="noopener">Mentions légales</a><a href="/legal#confidentialite" data-legal target="_blank" rel="noopener">Confidentialité</a></div>
     <button type="button" class="totop"><i>↑</i>Haut de page</button>
     <span>© 2026 Archivexa · Cotonou, Bénin</span>
@@ -1283,6 +1310,8 @@ table.tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
         <button type="button" class="on" data-t="subs">Abonnés</button>
         <button type="button" data-t="reqs">Demandes</button>
         <button type="button" data-t="posts">Articles</button>
+        <button type="button" data-t="talents">Talents</button>
+        <button type="button" data-t="jobs">Offres</button>
         <button type="button" data-t="live">Live</button>
       </div>
       <div class="apanel" data-p="subs">
@@ -1290,6 +1319,32 @@ table.tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
         <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Adresse e-mail</th><th>Source</th><th>Inscription</th><th></th></tr></thead><tbody id="subRows"></tbody></table></div>
       </div>
       <div class="apanel" data-p="reqs" hidden><div class="reqs" id="reqList"></div></div>
+      <div class="apanel" data-p="talents" hidden>
+        <div class="jb-off empty-note" hidden>Les fiches talents se consultent sur le site en ligne, page <b>/emplois</b>.</div>
+        <div class="jb-on">
+          <div class="atool"><input type="search" id="talSearch" placeholder="Rechercher un nom, une spécialité, une ville" aria-label="Rechercher un talent"><select id="talSpec" aria-label="Filtrer par spécialité" class="asel"><option value="">Toutes les spécialités</option></select><button type="button" class="btn" id="talCsv"><span class="lbl"><span>Exporter en CSV</span><span>Exporter en CSV</span></span></button></div>
+          <div class="tlist" id="talList"></div>
+        </div>
+      </div>
+      <div class="apanel" data-p="jobs" hidden>
+        <div class="jb-off empty-note" hidden>Les offres se publient sur le site en ligne. Elles apparaissent ensuite sur la page <b>/emplois</b>.</div>
+        <div class="jb-on">
+          <div class="mail-warn" id="mailWarn" hidden><b>Envoi d'e-mails non configuré.</b> Pour envoyer les offres aux talents, ajoutez <code>RESEND_API_KEY</code> et <code>RESEND_FROM</code> dans Vercel (voir le README). En attendant, « Profils » vous donne la liste des adresses à contacter.</div>
+          <form class="lv-form jb-form" id="jbForm" novalidate>
+            <label class="full">Intitulé du poste<input id="jbTitle" placeholder="Archiviste documentaliste"></label>
+            <label>Organisation<input id="jbOrg" placeholder="Nom de l'organisation (ou « Confidentiel »)"></label>
+            <label>Lieu<select id="jbZone"></select></label>
+            <label>Contrat<select id="jbContract"></select></label>
+            <label>Expérience minimale<select id="jbLevel"></select></label>
+            <div class="full"><span class="jb-l">Spécialités recherchées</span><div class="chips" id="jbSpecs"></div></div>
+            <label class="full">Description<textarea id="jbDesc" rows="6" placeholder="Missions, profil recherché, conditions"></textarea></label>
+            <label>Pour postuler (lien ou e-mail)<input id="jbApply" placeholder="rh@organisation.bj ou https://…"></label>
+            <label>Date limite<input id="jbDeadline" type="date"></label>
+            <div class="full" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button class="btn btn-main" type="submit" id="jbSave"><span class="lbl"><span>Publier l'offre</span><span>Publier l'offre</span></span></button><button class="btn" type="button" id="jbCancel" hidden><span class="lbl"><span>Annuler</span><span>Annuler</span></span></button><span class="nl-msg" id="jbMsg" role="status"></span></div>
+          </form>
+          <div class="plist" id="jbList"></div>
+        </div>
+      </div>
       <div class="apanel" data-p="live" hidden>
         <div id="lvOff" class="empty-note" hidden>Les sessions en direct se programment sur le site en ligne. <a data-live href="/live" target="_blank" rel="noopener" style="color:var(--volt-hi)">Voir la salle en démonstration</a>.</div>
         <div id="lvOn">
@@ -2709,7 +2764,7 @@ async function adminOpen(){
     $('#edCovers').innerHTML = COVERS.map(function(c,i){ return '<button type="button" aria-label="Couverture '+(i+1)+'" style="background:linear-gradient(135deg,'+c[0]+','+c[1]+')"></button>'; }).join('');
     $$('#edCovers button').forEach(function(b,i){ b.addEventListener('click', function(){ setCover(i); }); });
   }
-  renderSubs(); renderReqs(); renderPostList(); renderKpis(); loadLive();
+  renderSubs(); renderReqs(); renderPostList(); renderKpis(); loadLive(); loadJobsAdmin();
   if(hasG){ G.from('.kpi', {y:40, opacity:0, stagger:.08, duration:.9, ease:'expo.out'}); G.from('.atabs, .apanel:not([hidden])', {y:30, opacity:0, duration:.8, ease:'expo.out', delay:.2}); }
 }
 
@@ -2723,7 +2778,7 @@ if(lf) lf.addEventListener('submit', async function(e){
 });
 /* ---------- Live sessions (admin) ---------- */
 var LIVE_URL = 'https://claude.ai/artifact/FG7jCSJpDsJqLPzdtAADVg';
-var LEGAL_URL = 'https://claude.ai/artifact/QtKDxVBPJiCe1wws84Rfwy';
+var LEGAL_URL = 'https://claude.ai/artifact/EhLwK8oHXBwmxocqJK6JAp';
 storeReady.then(function(){ var base = S.mode==='api' ? '/legal' : LEGAL_URL; $$('[data-legal]').forEach(function(a){ var h = a.getAttribute('href'), i = h.indexOf('#'); a.href = base + (i>-1 ? h.slice(i) : ''); }); });
 (function(){
   var C = window.ARCHIVEXA || {}, wa = String(C.whatsapp||'').replace(/\D/g,''), cd = $('#contactDirect'), html = '';
@@ -2781,6 +2836,151 @@ if(lvf){
       m.className='nl-msg ok'; m.textContent='Session programmée : ' + j.session.code; $('#lvTitle').value=''; loadLive();
     }catch(err){ m.className='nl-msg bad'; m.textContent='Enregistrement impossible. Reconnectez-vous puis réessayez.'; }
   });
+}
+/* ---------- Emplois : talents et offres (admin) ---------- */
+var JOBS_URL = 'https://claude.ai/artifact/QXB41BSgaz8CkW6J1Bj3S8';
+storeReady.then(function(){ if(S.mode==='api') JOBS_URL = '/emplois'; $$('[data-jobs]').forEach(function(a){ a.href = JOBS_URL; if(S.mode!=='api'){ a.target = '_blank'; a.rel = 'noopener'; } }); });
+var JB = {talents:[], jobs:[], mail:false, editing:null, specs:[], wired:false, open:null};
+var J_SPECS = ['Archivage physique','Records management','Numérisation','GED','Archives numériques','Documentation et bibliothèque','Archives médicales','Données et data'];
+var J_LEVELS = ['Débutant (moins de 2 ans)','2 à 5 ans','5 à 10 ans','Plus de 10 ans'];
+var J_CONTRACTS = ['CDI','CDD','Stage','Mission ou freelance','Consultance'];
+var J_ZONES = ['Cotonou','Abomey-Calavi','Porto-Novo','Parakou','Autre ville du Bénin',"Afrique de l'Ouest",'À distance'];
+function csvDownload(rows, name){
+  var csv = rows.map(function(r){ return r.map(function(x){ return '"' + String(x==null?'':x).replace(/"/g,'""') + '"'; }).join(';'); }).join('\n');
+  var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['﻿'+csv], {type:'text/csv'})); a.download = name; document.body.appendChild(a); a.click(); a.remove();
+}
+async function loadJobsAdmin(){
+  var on = S.mode==='api';
+  $$('.jb-off').forEach(function(x){ x.hidden = on; }); $$('.jb-on').forEach(function(x){ x.hidden = !on; });
+  if(!on) return;
+  if(!JB.wired) wireJobsAdmin();
+  try{ var a = await api('/api/admin/talents'); JB.talents = a.talents || []; }catch(e){ JB.talents = []; }
+  try{ var b = await api('/api/admin/jobs'); JB.jobs = b.jobs || []; JB.mail = !!b.mail; }catch(e){ JB.jobs = []; }
+  $('#mailWarn').hidden = JB.mail;
+  renderTalents(); renderJobsAdmin();
+}
+function wireJobsAdmin(){
+  JB.wired = true;
+  $('#talSpec').innerHTML += J_SPECS.map(function(x){ return '<option>'+esc(x)+'</option>'; }).join('');
+  $('#jbZone').innerHTML = J_ZONES.map(function(x){ return '<option>'+esc(x)+'</option>'; }).join('');
+  $('#jbContract').innerHTML = J_CONTRACTS.map(function(x){ return '<option>'+esc(x)+'</option>'; }).join('');
+  $('#jbLevel').innerHTML = J_LEVELS.map(function(x){ return '<option>'+esc(x)+'</option>'; }).join('');
+  $('#jbSpecs').innerHTML = J_SPECS.map(function(x){ return '<button type="button" class="chip" aria-pressed="false">'+esc(x)+'</button>'; }).join('');
+  $$('#jbSpecs .chip').forEach(function(c){ c.addEventListener('click', function(){ c.setAttribute('aria-pressed', c.getAttribute('aria-pressed')==='true' ? 'false' : 'true'); }); });
+  $('#talSearch').addEventListener('input', renderTalents); $('#talSpec').addEventListener('change', renderTalents);
+  $('#talCsv').addEventListener('click', function(){
+    csvDownload([['nom','email','telephone','ville','metier','specialites','experience','contrats','zones','diplome','linkedin','cv','mise_a_jour']].concat(JB.talents.map(function(t){ return [t.name,t.email,t.phone,t.city,t.title,(t.specs||[]).join(', '),t.level,(t.contracts||[]).join(', '),(t.zones||[]).join(', '),t.degree,t.linkedin,t.cv?t.cv.name:'',t.updatedAt]; })), 'archivexa-talents.csv');
+  });
+  $('#jbCancel').addEventListener('click', resetJobForm);
+  $('#jbForm').addEventListener('submit', saveJob);
+}
+function talentMatchesFilter(t){
+  var q = ($('#talSearch').value||'').toLowerCase(), sp = $('#talSpec').value;
+  if(sp && (t.specs||[]).indexOf(sp) < 0) return false;
+  if(!q) return true;
+  return [t.name,t.email,t.city,t.title,(t.specs||[]).join(' '),(t.zones||[]).join(' ')].join(' ').toLowerCase().indexOf(q) > -1;
+}
+async function downloadCv(id, name){
+  try{
+    var r = await fetch('/api/admin/talents?cv=' + encodeURIComponent(id), {headers:{Authorization:'Bearer ' + TOKEN}});
+    if(!r.ok) throw r.status;
+    var b = await r.blob(), a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = name || 'cv'; document.body.appendChild(a); a.click(); a.remove();
+  }catch(e){ say('Téléchargement impossible'); }
+}
+function renderTalents(){
+  var rows = JB.talents.filter(talentMatchesFilter);
+  $('#talList').innerHTML = rows.length ? rows.map(function(t){
+    return '<div class="tal"><div class="top"><div><b>'+esc(t.name)+'</b><small>'+esc([t.title, t.city].filter(Boolean).join(' · ') || '—')+'</small></div><span class="chip-s">'+esc(t.level||'')+'</span></div>'+
+      '<div class="tags">'+(t.specs||[]).map(function(x){ return '<span class="chip-s">'+esc(x)+'</span>'; }).join('')+'</div>'+
+      '<div><span class="k">Contrats :</span> '+esc((t.contracts||[]).join(', ')||'tous')+' · <span class="k">Zones :</span> '+esc((t.zones||[]).join(', ')||'partout')+'</div>'+
+      '<div><span class="k">Contact :</span> <a href="mailto:'+esc(t.email)+'" style="color:var(--volt-hi)">'+esc(t.email)+'</a>'+(t.phone?' · '+esc(t.phone):'')+'</div>'+
+      (t.degree ? '<div><span class="k">Diplôme :</span> '+esc(t.degree)+'</div>' : '')+
+      (t.about ? '<div class="about">'+esc(t.about)+'</div>' : '')+
+      '<div class="acts">'+(t.cv ? '<button type="button" class="ibtn" data-cv="'+esc(t.id)+'" data-cvn="'+esc(t.cv.name)+'">CV · '+esc(t.cv.name)+'</button>' : '<span class="k" style="font-size:13px">Pas de CV</span>')+
+      (t.linkedin ? '<a class="ibtn" style="text-decoration:none" href="'+esc(t.linkedin)+'" target="_blank" rel="noopener">LinkedIn</a>' : '')+
+      '<button type="button" class="ibtn danger" data-tdel="'+esc(t.id)+'">Supprimer</button></div>'+
+      '<div class="k" style="font-family:var(--f-mono);font-size:11px">Mise à jour : '+esc(t.updatedAt ? new Date(t.updatedAt).toLocaleDateString('fr-FR') : '')+'</div></div>';
+  }).join('') : '<div class="empty-note" style="grid-column:1/-1">'+(JB.talents.length ? 'Aucune fiche ne correspond à ce filtre.' : 'Aucune fiche pour le moment. Partagez la page Emplois aux archivistes de votre réseau.')+'</div>';
+  $$('[data-cv]').forEach(function(b){ b.onclick = function(){ downloadCv(b.dataset.cv, b.dataset.cvn); }; });
+  $$('[data-tdel]').forEach(function(b){ b.onclick = function(){
+    var acts = b.parentElement; acts.innerHTML = '<span class="confirm">Supprimer la fiche et le CV ?</span><button type="button" class="ibtn danger" data-yes>Oui</button><button type="button" class="ibtn" data-no>Non</button>';
+    $('[data-no]', acts).onclick = renderTalents;
+    $('[data-yes]', acts).onclick = async function(){ try{ await api('/api/admin/talents?id=' + encodeURIComponent(b.dataset.tdel), {method:'DELETE'}); JB.talents = JB.talents.filter(function(x){ return x.id!==b.dataset.tdel; }); renderTalents(); say('Fiche supprimée'); }catch(e){ say('Suppression impossible'); renderTalents(); } };
+  }; });
+  if(hasG) G.fromTo('#talList .tal', {y:16, opacity:0}, {y:0, opacity:1, stagger:.04, duration:.5, ease:'expo.out', clearProps:'transform,opacity'});
+}
+function renderJobsAdmin(){
+  $('#jbList').innerHTML = JB.jobs.length ? JB.jobs.map(function(j){
+    var meta = [j.org, j.zone, j.contract, j.deadline ? 'jusqu\'au ' + new Date(j.deadline+'T12:00').toLocaleDateString('fr-FR') : ''].filter(Boolean).join(' · ');
+    return '<div class="jrow" data-jid="'+esc(j.id)+'"><div class="lv-row"><div class="t"><b>'+esc(j.title)+'<span class="badge '+(j.open?'on':'off')+'">'+(j.open?'En ligne':(j.status==='closed'?'Fermée':'Expirée'))+'</span></b><small>'+esc(meta)+'</small><small style="display:block;margin-top:4px">'+j.matchCount+' profil'+(j.matchCount>1?'s':'')+' correspondant'+(j.matchCount>1?'s':'')+' · '+j.sentCount+' déjà prévenu'+(j.sentCount>1?'s':'')+'</small></div>'+
+      '<div class="acts"><button type="button" class="ibtn" data-jm="'+esc(j.id)+'">Profils</button>'+(j.open ? '<button type="button" class="ibtn" data-js="'+esc(j.id)+'"'+(j.pending?'':' disabled')+'>Envoyer'+(j.pending?' ('+j.pending+')':'')+'</button>' : '')+
+      '<button type="button" class="ibtn" data-je="'+esc(j.id)+'">Modifier</button><button type="button" class="ibtn" data-jt="'+esc(j.id)+'">'+(j.status==='closed'?'Rouvrir':'Fermer')+'</button><button type="button" class="ibtn danger" data-jd="'+esc(j.id)+'">Supprimer</button></div></div><div class="jmatch" hidden></div></div>';
+  }).join('') : '<div class="empty-note">Aucune offre publiée. Remplissez le formulaire ci-dessus : l\'offre apparaîtra sur la page Emplois, et vous pourrez l\'envoyer aux profils correspondants.</div>';
+  $$('[data-jm]').forEach(function(b){ b.onclick = function(){ showMatches(b.dataset.jm); }; });
+  $$('[data-js]').forEach(function(b){ b.onclick = function(){ sendJob(b.dataset.js, b); }; });
+  $$('[data-je]').forEach(function(b){ b.onclick = function(){ editJob(b.dataset.je); }; });
+  $$('[data-jt]').forEach(function(b){ b.onclick = function(){ var j = JB.jobs.filter(function(x){ return x.id===b.dataset.jt; })[0]; if(j) putJob(Object.assign({}, j, {status: j.status==='closed' ? 'open' : 'closed'}), j.status==='closed' ? 'Offre rouverte' : 'Offre fermée'); }; });
+  $$('[data-jd]').forEach(function(b){ b.onclick = function(){
+    var acts = b.parentElement; acts.innerHTML = '<span class="confirm">Supprimer l\'offre ?</span><button type="button" class="ibtn danger" data-yes>Oui</button><button type="button" class="ibtn" data-no>Non</button>';
+    $('[data-no]', acts).onclick = renderJobsAdmin;
+    $('[data-yes]', acts).onclick = async function(){ try{ await api('/api/admin/jobs?id=' + encodeURIComponent(b.dataset.jd), {method:'DELETE'}); say('Offre supprimée'); loadJobsAdmin(); }catch(e){ say('Suppression impossible'); renderJobsAdmin(); } };
+  }; });
+  if(hasG) G.fromTo('#jbList .jrow', {y:16, opacity:0}, {y:0, opacity:1, stagger:.05, duration:.5, ease:'expo.out', clearProps:'transform,opacity'});
+}
+async function showMatches(id){
+  var row = $('[data-jid="'+id+'"]'), box = $('.jmatch', row);
+  if(!box.hidden){ box.hidden = true; return; }
+  box.hidden = false; box.innerHTML = '<span class="k" style="color:var(--muted)">Recherche des profils…</span>';
+  try{
+    var r = await api('/api/admin/jobs?id=' + encodeURIComponent(id) + '&action=preview', {method:'POST', body:'{}'});
+    var list = r.matches || [];
+    box.innerHTML = list.length ? list.map(function(m){ return '<div class="m"><div><b>'+esc(m.name)+'</b> <span>'+esc(m.level)+' · '+esc((m.specs||[]).join(', '))+'</span></div><span>'+esc(m.email)+(m.sent?' · prévenu':'')+'</span></div>'; }).join('') +
+      '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px"><button type="button" class="ibtn" data-copy>Copier les adresses</button><button type="button" class="ibtn" data-mcsv>Exporter en CSV</button></div>'
+      : '<span style="color:var(--muted)">Aucun profil ne correspond encore à cette offre (spécialité, contrat, lieu et expérience).</span>';
+    var c = $('[data-copy]', box); if(c) c.onclick = function(){ var t = list.map(function(m){ return m.email; }).join(', '); try{ navigator.clipboard.writeText(t).then(function(){ say('Adresses copiées'); }, function(){ say(t); }); }catch(e){ say(t); } };
+    var x = $('[data-mcsv]', box); if(x) x.onclick = function(){ csvDownload([['nom','email','experience','specialites','deja_prevenu']].concat(list.map(function(m){ return [m.name, m.email, m.level, (m.specs||[]).join(', '), m.sent?'oui':'non']; })), 'offre-' + id + '-profils.csv'); };
+    if(hasG) G.fromTo(box, {opacity:0, y:-8}, {opacity:1, y:0, duration:.4, ease:'expo.out', clearProps:'transform,opacity'});
+  }catch(e){ box.innerHTML = '<span style="color:#ffb4c0">Chargement impossible.</span>'; }
+}
+async function sendJob(id, btn){
+  var acts = btn.parentElement, j = JB.jobs.filter(function(x){ return x.id===id; })[0];
+  if(!JB.mail){ say('Envoi non configuré : voir le message en haut de l\'onglet'); showMatches(id); return; }
+  acts.innerHTML = '<span class="confirm">Envoyer l\'offre à '+j.pending+' profil'+(j.pending>1?'s':'')+' ?</span><button type="button" class="ibtn" data-yes>Envoyer</button><button type="button" class="ibtn" data-no>Annuler</button>';
+  $('[data-no]', acts).onclick = renderJobsAdmin;
+  $('[data-yes]', acts).onclick = async function(){
+    this.disabled = true; this.textContent = 'Envoi…';
+    try{ var r = await api('/api/admin/jobs?id=' + encodeURIComponent(id) + '&action=send', {method:'POST', body:'{}'}); say(r.sent + ' e-mail' + (r.sent>1?'s':'') + ' envoyé' + (r.sent>1?'s':'')); loadJobsAdmin(); }
+    catch(e){ say(e.code==='mail_not_configured' ? 'Envoi non configuré' : e.code==='mail_error' ? 'Le service d\'e-mail a refusé l\'envoi' : 'Envoi impossible'); renderJobsAdmin(); }
+  };
+}
+function resetJobForm(){
+  JB.editing = null; $('#jbForm').reset(); $$('#jbSpecs .chip').forEach(function(c){ c.setAttribute('aria-pressed','false'); });
+  $('#jbSave .lbl').innerHTML = '<span>Publier l\'offre</span><span>Publier l\'offre</span>'; $('#jbCancel').hidden = true; $('#jbMsg').textContent = '';
+}
+function editJob(id){
+  var j = JB.jobs.filter(function(x){ return x.id===id; })[0]; if(!j) return;
+  JB.editing = j; $('#jbTitle').value = j.title; $('#jbOrg').value = j.org||''; $('#jbZone').value = j.zone; $('#jbContract').value = j.contract; $('#jbLevel').value = j.minLevel;
+  $('#jbDesc').value = j.desc||''; $('#jbApply').value = j.apply||''; $('#jbDeadline').value = j.deadline||'';
+  $$('#jbSpecs .chip').forEach(function(c){ c.setAttribute('aria-pressed', (j.specs||[]).indexOf(c.textContent)>-1 ? 'true' : 'false'); });
+  $('#jbSave .lbl').innerHTML = '<span>Enregistrer</span><span>Enregistrer</span>'; $('#jbCancel').hidden = false;
+  $('#admv').scrollTo({top: $('#jbForm').offsetTop - 120, behavior:'smooth'});
+}
+async function putJob(body, okMsg){
+  try{ await api('/api/admin/jobs', {method:'PUT', body:JSON.stringify(body)}); say(okMsg); await loadJobsAdmin(); return true; }
+  catch(e){ say('Enregistrement impossible'); return false; }
+}
+async function saveJob(e){
+  e.preventDefault(); var m = $('#jbMsg'), title = $('#jbTitle').value.trim();
+  if(!title){ m.className='nl-msg bad'; m.textContent='Donnez un intitulé au poste.'; return; }
+  var body = {title:title, org:$('#jbOrg').value.trim(), zone:$('#jbZone').value, contract:$('#jbContract').value, minLevel:$('#jbLevel').value,
+    specs:$$('#jbSpecs .chip[aria-pressed="true"]').map(function(c){ return c.textContent; }), desc:$('#jbDesc').value.trim(), apply:$('#jbApply').value.trim(), deadline:$('#jbDeadline').value,
+    status: JB.editing ? JB.editing.status : 'open'};
+  if(body.apply && !/^https?:\/\//i.test(body.apply) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.apply)){ m.className='nl-msg bad'; m.textContent='« Pour postuler » doit être un lien (https://…) ou une adresse e-mail.'; return; }
+  if(JB.editing) body.id = JB.editing.id;
+  m.className='nl-msg'; m.textContent='Enregistrement…';
+  var ok = await putJob(body, JB.editing ? 'Offre mise à jour' : 'Offre publiée');
+  if(ok){ var wasNew = !JB.editing; resetJobForm(); m.className='nl-msg ok'; m.textContent = wasNew ? 'Offre publiée sur la page Emplois. Cliquez sur « Profils » pour voir à qui elle correspond.' : 'Offre mise à jour.'; }
+  else { m.className='nl-msg bad'; m.textContent='Enregistrement impossible. Reconnectez-vous puis réessayez.'; }
 }
 /* posts feed for everyone who can read the store */
 storeReady.then(function(){

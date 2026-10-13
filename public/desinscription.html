@@ -72,19 +72,28 @@ p{margin:0;color:var(--muted);max-width:30em}
 (function(){
   if(window.claude){ document.querySelectorAll('a[href="/"]').forEach(function(a){ a.removeAttribute('href'); }); }
   var G = window.gsap, hasG = !!G && !matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var q = new URLSearchParams(location.search), email = (q.get('e') || '').trim(), t = q.get('t') || '';
+  var q = new URLSearchParams(location.search), email = (q.get('e') || '').trim(), t = q.get('t') || '', jobs = q.get('s') === 'emplois';
   var $ = function(s){ return document.querySelector(s); };
+  if(jobs){
+    document.title = 'Supprimer ma fiche · Archivexa';
+    $('.kick').textContent = 'Archivexa Emplois · Fiche talent';
+    $('#title').textContent = 'Supprimer ma fiche';
+    $('#text').textContent = "Votre fiche et votre CV seront effacés, et vous ne recevrez plus d'offres à cette adresse :";
+    $('#go').textContent = 'Supprimer ma fiche';
+    $('#actions a').textContent = 'Garder ma fiche';
+    var lbl = document.querySelector('.art text'); if(lbl) lbl.textContent = 'TALENTS';
+  }
   $('#mail').textContent = email || 'adresse inconnue';
   if(!email || !t){ $('#title').textContent = 'Lien incomplet'; $('#text').textContent = "Ce lien de désinscription n'est pas complet. Utilisez le lien présent en bas de notre e-mail."; $('#mail').hidden = true; $('#go').hidden = true; }
   if(hasG){ G.from('.card', {y:40, opacity:0, scale:.96, duration:.9, ease:'expo.out'}); G.from('#slip', {y:-60, opacity:0, duration:.8, ease:'bounce.out', delay:.3}); G.to('#slip', {y:-8, duration:1.6, yoyo:true, repeat:-1, ease:'sine.inOut', delay:1.2}); }
   $('#go').onclick = function(){
-    var b = this; b.disabled = true; $('#msg').className = 'msg'; $('#msg').textContent = 'Désinscription en cours…';
-    fetch('/api/unsubscribe', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email:email, t:t})})
+    var b = this; b.disabled = true; $('#msg').className = 'msg'; $('#msg').textContent = jobs ? 'Suppression en cours…' : 'Désinscription en cours…';
+    fetch(jobs ? '/api/talents?action=remove' : '/api/unsubscribe', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email:email, t:t})})
       .then(function(r){ if(!r.ok) throw r.status; done(); })
       .catch(function(code){ b.disabled = false; $('#msg').className = 'msg bad'; $('#msg').textContent = code===400 ? "Ce lien n'est pas valide. Utilisez le lien présent en bas de notre e-mail." : 'La désinscription n\'a pas abouti. Réessayez dans un instant.'; });
   };
   function done(){
-    $('#title').textContent = 'C\'est fait.'; $('#text').textContent = "Vous êtes désinscrit. Vous pouvez vous réinscrire quand vous voulez depuis le site."; $('#msg').textContent = '';
+    $('#title').textContent = 'C\'est fait.'; $('#text').textContent = jobs ? "Votre fiche et votre CV sont supprimés. Vous pouvez en déposer une nouvelle quand vous voulez." : "Vous êtes désinscrit. Vous pouvez vous réinscrire quand vous voulez depuis le site."; $('#msg').textContent = '';
     $('#actions').innerHTML = '<a class="btn" href="/">Retour au site</a>';
     if(hasG){ G.killTweensOf('#slip'); G.to('#slip', {y:-90, x:60, rotate:18, opacity:0, duration:.9, ease:'power3.in'}); G.from('#title', {y:20, opacity:0, duration:.6, delay:.2}); }
     else $('#slip').style.display = 'none';

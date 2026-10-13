@@ -703,7 +703,7 @@ var inClaude = !!(window.claude && typeof window.claude.use === 'function');
 var hosted = !inClaude && /^https?:$/.test(location.protocol);
 var TOKEN = null; try{ TOKEN = sessionStorage.getItem('axa-admin'); }catch(e){}
 var DEMO = !hosted || /[?&]demo=1/.test(location.search);
-if(inClaude){ $$('[data-legal]').forEach(function(a){ var h = a.getAttribute('href'), i = h.indexOf('#'); a.href = 'https://claude.ai/artifact/QtKDxVBPJiCe1wws84Rfwy' + (i>-1 ? h.slice(i) : ''); a.target = '_blank'; }); $('#homeLink').removeAttribute('href'); $('#backSite').hidden = true; $('#endSite').hidden = true; }
+if(inClaude){ $$('[data-legal]').forEach(function(a){ var h = a.getAttribute('href'), i = h.indexOf('#'); a.href = 'https://claude.ai/artifact/EhLwK8oHXBwmxocqJK6JAp' + (i>-1 ? h.slice(i) : ''); a.target = '_blank'; }); $('#homeLink').removeAttribute('href'); $('#backSite').hidden = true; $('#endSite').hidden = true; }
 function api(path, opts){
   opts = opts || {}; opts.headers = Object.assign({'Content-Type':'application/json'}, opts.headers || {});
   if(TOKEN) opts.headers.Authorization = 'Bearer ' + TOKEN;

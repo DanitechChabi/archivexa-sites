@@ -5,6 +5,7 @@ Site animé d'Archivexa (archives, GED, plateformes numériques) avec :
 - `/` : le site complet (services, méthode, plateformes, formations, blog, rendez-vous, espace admin) ;
 - `/lancement` : la page d'attente avec inscription « Me prévenir » ;
 - `/live` : Archivexa Live, la salle de formation en direct ;
+- `/emplois` : la page Emplois, où les archivistes déposent leur fiche et leur CV ;
 - une API qui enregistre les abonnés, les demandes de rendez-vous et les articles du blog.
 
 Les pages sont en HTML statique (`public/`). L'API tourne en fonctions Vercel (`api/`). Les données sont stockées dans un **Blob store privé** Vercel, un fichier JSON par abonné, demande ou article.
@@ -31,9 +32,9 @@ Les pages sont en HTML statique (`public/`). L'API tourne en fonctions Vercel (`
    | `LIVEKIT_URL` | pour le live | Adresse `wss://…` de ton projet LiveKit. |
    | `LIVEKIT_API_KEY` | pour le live | Clé API du projet LiveKit. |
    | `LIVEKIT_API_SECRET` | pour le live | Secret API du projet LiveKit. |
-   | `RESEND_API_KEY` | non | Pour recevoir un e-mail à chaque abonné ou demande de rendez-vous. |
+   | `RESEND_API_KEY` | pour les offres | Envoi des e-mails : notifications pour toi, confirmations et offres pour les talents. |
    | `CONTACT_EMAIL` | non | Adresse qui reçoit ces notifications. |
-   | `RESEND_FROM` | non | Expéditeur vérifié chez Resend, ex. `Archivexa <contact@archivexa.com>`. Par défaut : l'adresse de test de Resend. |
+   | `RESEND_FROM` | pour les offres | Expéditeur sur un domaine vérifié chez Resend, ex. `Archivexa <offres@archivexa.bj>`. Sans domaine vérifié, Resend n'envoie qu'à ta propre adresse : les offres ne peuvent pas partir vers les talents. |
 
 5. **Redéployer** (*Deployments → Redeploy*) pour que les variables soient prises en compte.
 
@@ -70,9 +71,28 @@ Les participants ont : caméra, micro, partage d'écran, discussion, main levée
 
 Sur les consommations et limites de l'offre gratuite LiveKit, vérifie la page des tarifs avant les premières sessions avec beaucoup de participants.
 
+## Emplois (fiches talents et offres)
+
+La page `/emplois` présente les offres ouvertes et un formulaire de fiche : identité, spécialités, expérience, contrats et zones souhaités, parcours et CV (PDF ou Word, 3 Mo maximum). La fiche n'est jamais publiée. Chaque talent reçoit par e-mail un lien personnel « Modifier ma fiche » : une fiche existante ne peut être remplacée que par ce lien, pour que personne ne puisse écraser la fiche d'un autre. Sans envoi d'e-mails configuré, c'est toi qui supprimes l'ancienne fiche dans l'admin si quelqu'un veut repartir de zéro.
+
+Dans l'espace admin :
+
+- **Talents** : recherche, filtre par spécialité, téléchargement du CV, suppression, export CSV. Les fiches non mises à jour depuis 2 ans sont supprimées automatiquement à l'ouverture de cet onglet.
+- **Offres** : publier une offre (poste, organisation, lieu, contrat, expérience minimale, spécialités, description, lien ou e-mail pour postuler, date limite). Elle apparaît aussitôt sur `/emplois` et disparaît après la date limite ou quand tu la fermes.
+- **Profils** montre les talents qui correspondent : au moins une spécialité commune, contrat souhaité (ou aucun préféré), zone souhaitée (ou « Toutes les zones ») et expérience suffisante. Tu peux copier les adresses ou les exporter.
+- **Envoyer** expédie l'offre par e-mail aux profils correspondants qui ne l'ont pas encore reçue. Chaque e-mail contient un lien qui supprime la fiche du talent.
+
+Pour que l'envoi fonctionne, il faut un domaine à toi (par exemple `archivexa.bj`) vérifié chez Resend :
+
+1. Crée un compte sur resend.com, puis *Domains → Add domain* et ajoute les enregistrements DNS indiqués chez ton registraire.
+2. Crée une clé API (*API Keys*).
+3. Dans Vercel, ajoute `RESEND_API_KEY` et `RESEND_FROM` (par exemple `Archivexa <offres@archivexa.bj>`), puis redéploie.
+
+Tant que ce n'est pas fait, l'onglet Offres l'indique et tu peux contacter les profils toi-même avec la liste d'adresses.
+
 ## Mentions légales
 
-La page `/legal` est un modèle rédigé à partir de ce que fait le site. Les durées de conservation (3 ans pour les demandes, 5 ans pour les émargements et attestations) et le délai de réponse d'un mois sont des propositions : ajuste-les, puis fais valider l'ensemble, idéalement au regard des exigences de l'APDP.
+La page `/legal` est un modèle rédigé à partir de ce que fait le site. Les durées de conservation (3 ans pour les demandes, 2 ans pour les fiches talents, 5 ans pour les émargements et attestations) et le délai de réponse d'un mois sont des propositions : ajuste-les, puis fais valider l'ensemble, idéalement au regard des exigences de l'APDP.
 
 ## Après la mise en ligne
 
@@ -91,6 +111,7 @@ public/            pages et fichiers statiques
   index.html       site complet
   live.html        salle de formation en direct
   lancement.html   page d'attente
+  emplois.html     offres et fiches talents
   legal.html       mentions légales et confidentialité
   desinscription.html  désinscription de la lettre
   config.js        réglages (contact, entreprise)
@@ -104,6 +125,7 @@ api/
   _r/posts.js         GET   articles publiés (?all=1 avec session admin : brouillons inclus)
   _r/admin/           connexion, abonnés + demandes, articles, retrait d'un abonné
   _r/live/            sessions, jetons d'accès, émargement, attestations
+  _r/jobs.js, _r/talents.js, _r/admin/jobs.js, _r/admin/talents.js   emplois : offres, fiches, CV, envois
   _r/_lib/            stockage Blob, sécurité, notifications
 ```
 

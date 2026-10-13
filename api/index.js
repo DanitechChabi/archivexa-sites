@@ -13,6 +13,10 @@ import liveToken from './_r/live/token.js';
 import liveAdmin from './_r/live/admin.js';
 import liveAttendance from './_r/live/attendance.js';
 import liveCertificate from './_r/live/certificate.js';
+import jobs from './_r/jobs.js';
+import talents from './_r/talents.js';
+import adminTalents from './_r/admin/talents.js';
+import adminJobs from './_r/admin/jobs.js';
 import { send } from './_r/_lib/http.js';
 
 const ROUTES = {
@@ -29,6 +33,10 @@ const ROUTES = {
   'live/admin': liveAdmin,
   'live/attendance': liveAttendance,
   'live/certificate': liveCertificate,
+  'jobs': jobs,
+  'talents': talents,
+  'admin/talents': adminTalents,
+  'admin/jobs': adminJobs,
 };
 
 export default async function handler(req, res) {

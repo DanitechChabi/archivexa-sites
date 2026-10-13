@@ -93,3 +93,37 @@ export async function notify(subject, text) {
     /* a failed notification never blocks the visitor */
   }
 }
+
+// Signed links for the job board: /desinscription?s=emplois&e=<email>&t=<signature>
+export function talentToken(email) {
+  return crypto.createHmac('sha256', (process.env.ADMIN_SECRET || '') + ':talent').update(String(email).toLowerCase()).digest('base64url').slice(0, 22);
+}
+export function talentOk(email, token) {
+  if (!process.env.ADMIN_SECRET) return false;
+  const a = Buffer.from(String(token || '')), b = Buffer.from(talentToken(email));
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
+}
+
+// E-mails to candidates through Resend. Needs RESEND_API_KEY and a sender on a domain
+// verified at Resend (RESEND_FROM). Returns the number of e-mails accepted.
+export function mailReady() {
+  return !!(process.env.RESEND_API_KEY && process.env.RESEND_FROM);
+}
+export async function sendMails(messages) {
+  if (!mailReady() || !messages.length) return 0;
+  let ok = 0;
+  for (let i = 0; i < messages.length; i += 100) {
+    const batch = messages.slice(i, i + 100).map((m) => ({ from: process.env.RESEND_FROM, ...m }));
+    const r = await fetch('https://api.resend.com/emails/batch', {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + process.env.RESEND_API_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify(batch),
+    });
+    if (!r.ok) throw new Error('resend_' + r.status + ' ' + (await r.text()).slice(0, 200));
+    ok += batch.length;
+  }
+  return ok;
+}
+export function escHtml(s) {
+  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+}

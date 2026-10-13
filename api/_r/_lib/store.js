@@ -47,3 +47,13 @@ export async function exists(prefix) {
 export async function remove(pathname) {
   await del(pathname);
 }
+
+// Binary files (CVs). Same private store.
+export async function writeFile(pathname, buffer, contentType) {
+  await put(pathname, buffer, { access: ACCESS, contentType, addRandomSuffix: false, allowOverwrite: true });
+}
+export async function readFile(pathname) {
+  const res = await get(pathname, { access: ACCESS, useCache: false });
+  if (!res || res.statusCode !== 200 || !res.stream) return null;
+  return { stream: res.stream, contentType: res.blob?.contentType || 'application/octet-stream' };
+}
