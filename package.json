@@ -1,0 +1,14 @@
+{
+  "name": "archivexa-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Site Archivexa : pages statiques animées, salle de formation en direct et API (abonnés, rendez-vous, articles, sessions live, admin).",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.8.1",
+    "livekit-server-sdk": "2.19.0"
+  }
+}
