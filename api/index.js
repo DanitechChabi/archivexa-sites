@@ -17,6 +17,7 @@ import jobs from './_r/jobs.js';
 import talents from './_r/talents.js';
 import adminTalents from './_r/admin/talents.js';
 import adminJobs from './_r/admin/jobs.js';
+import health from './_r/health.js';
 import { send } from './_r/_lib/http.js';
 
 const ROUTES = {
@@ -37,6 +38,7 @@ const ROUTES = {
   'talents': talents,
   'admin/talents': adminTalents,
   'admin/jobs': adminJobs,
+  'health': health,
 };
 
 export default async function handler(req, res) {
