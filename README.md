@@ -4,6 +4,7 @@ Site animé d'Archivexa (archives, GED, plateformes numériques) avec :
 
 - `/` : le site complet (services, méthode, plateformes, formations, blog, rendez-vous, espace admin) ;
 - `/lancement` : la page d'attente avec inscription « Me prévenir » ;
+- `/formations` : le catalogue de formations dédié au numérique appliqué aux archives (13 modules, 4 parcours, demande d'inscription) ;
 - `/live` : Archivexa Live, la salle de formation en direct ;
 - `/emplois` : la page Emplois, avec deux parcours : les candidats déposent leur profil et leur CV, les recruteurs proposent une offre ;
 - une API qui enregistre les abonnés, les demandes de rendez-vous et les articles du blog.
@@ -90,6 +91,18 @@ Pour que l'envoi fonctionne, il faut un domaine à toi (par exemple `archivexa.b
 
 Tant que ce n'est pas fait, l'onglet Offres l'indique et tu peux contacter les profils toi-même avec la liste d'adresses.
 
+## Formations numériques
+
+La page `/formations` présente 13 modules (codes `NUM-01` à `NUM-13`) répartis en quatre parcours : bases du numérique, numérisation, GED et archivage électronique, gouvernance, données et IA. Le catalogue se modifie dans `public/formations.html` (tableaux `MODS`, `TRACKS` et `PROFILES`).
+
+- Le visiteur choisit des modules, un format et un nombre de participants, puis envoie sa demande. Elle arrive dans l'onglet **Demandes** de l'admin (avec modules, format, participants et référence) et par e-mail si `CONTACT_EMAIL` est configuré.
+- Quand une session Live est programmée avec un code `NUM-xx` dans le champ *Formation*, la carte du module affiche « En direct le … » avec un lien pour rejoindre. Les anciens codes `FOR-02`, `FOR-03` et `FOR-04` sont rattachés à `NUM-01`, `NUM-04` et `NUM-07`.
+- Un lien `/formations#NUM-04` ouvre la page directement sur un module.
+
+## Logo
+
+Le symbole représente une boîte d'archives dont un coin devient un pixel : le passage du papier au numérique. Fichiers : `archivexa-symbole.svg`, `archivexa-logo-fond-clair.svg`, `archivexa-logo-fond-sombre.svg`, `favicon.svg`, `apple-touch-icon.png` et l'image de partage `og.png`.
+
 ## Mentions légales
 
 La page `/legal` est un modèle rédigé à partir de ce que fait le site. Les durées de conservation (3 ans pour les demandes, 2 ans pour les fiches talents, 5 ans pour les émargements et attestations) et le délai de réponse d'un mois sont des propositions : ajuste-les, puis fais valider l'ensemble, idéalement au regard des exigences de l'APDP.
@@ -109,6 +122,7 @@ La page `/legal` est un modèle rédigé à partir de ce que fait le site. Les d
 ```
 public/            pages et fichiers statiques
   index.html       site complet
+  formations.html  catalogue des formations numériques
   live.html        salle de formation en direct
   lancement.html   page d'attente
   emplois.html     offres et fiches talents

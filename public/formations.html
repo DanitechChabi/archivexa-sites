@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Formations numériques · Archives, GED et préservation · Archivexa</title>
+<meta name="description" content="Formations Archivexa dédiées au numérique appliqué aux archives : nommage et classement, numérisation et PDF/A, GED, archivage électronique, préservation, données personnelles, IA. En présentiel, dans vos locaux ou en direct.">
+<meta name="theme-color" content="#060b1d">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://archivexa.vercel.app/formations">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Archivexa">
+<meta property="og:title" content="Formations numériques · Archivexa">
+<meta property="og:description" content="Treize modules pour faire passer vos archives au numérique, sans perdre ni la preuve ni la mémoire.">
+<meta property="og:image" content="/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script src="/config.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: same night-blue vault as the main site. Hero shows paper turning into data under a scanner beam; catalogue works like a basket (pick modules, then send one request). Four tracks, each with its own colour. */
+:root{
+  --night:#060b1d; --night-2:#0b1430; --night-3:#111d42; --line:#1d2b55; --ink:#edf1ff; --muted:#8792b8;
+  --volt:#2f6bff; --volt-hi:#5b8cff; --ice:#a9c6ff; --ok:#3ccf8e; --warn:#ffb066; --bad:#ff6b81;
+  --t-base:#a9c6ff; --t-num:#ffb066; --t-ged:#5b8cff; --t-gouv:#3ccf8e;
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif; --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --gut:clamp(16px,5vw,64px); --max:1240px; --ease:cubic-bezier(.16,1,.3,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+body{margin:0;background:var(--night);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;font-stretch:112%;line-height:1;letter-spacing:-.03em;text-wrap:balance;margin:0}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--volt-hi);outline-offset:3px;border-radius:8px}
+::selection{background:var(--volt);color:#fff}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+.mono{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.cote{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;color:var(--volt-hi);text-transform:uppercase;display:inline-flex;align-items:center;gap:10px}
+.cote::before{content:"";width:22px;height:1px;background:currentColor}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+section{padding-block:clamp(70px,9vw,130px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(20px,4vw,60px);align-items:end;margin-bottom:clamp(30px,4vw,54px)}
+@media (max-width:860px){.sec-head{grid-template-columns:minmax(0,1fr)}}
+.sec-head h2{font-size:clamp(34px,5vw,68px);margin-top:16px}
+.sec-head h2 em,.hero h1 em{font-style:normal;font-weight:300;font-stretch:62%;color:var(--volt-hi)}
+.sec-head p{color:var(--muted);font-size:clamp(16px,1.4vw,18px)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* buttons */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:none;white-space:nowrap;cursor:pointer;transition:background .3s,border-color .3s,color .3s,transform .4s var(--ease)}
+.btn:hover{border-color:var(--volt-hi);transform:translateY(-2px)}
+.btn-main{background:var(--volt);border-color:var(--volt);color:#fff}
+.btn-main:hover{background:var(--volt-hi);border-color:var(--volt-hi)}
+.btn .arr{transition:transform .4s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+.btn-sm{padding:10px 16px;font-size:14px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--night) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;min-width:0}
+.brand .lg{height:28px;width:auto;display:block;overflow:visible;color:var(--ink)}
+.lg rect{transform-box:fill-box;transform-origin:center}
+.brand .tag{font-family:var(--f-display);font-weight:700;font-stretch:105%;font-size:17px;color:var(--volt-hi);padding-left:14px;border-left:1px solid var(--line);white-space:nowrap}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:14px;color:var(--muted)}
+.nav ul a{text-decoration:none;transition:color .3s}
+.nav ul a:hover,.nav ul a[aria-current]{color:var(--ink)}
+.nav .live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--bad);margin-right:7px;vertical-align:1px;animation:ping 1.8s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(255,107,129,.6)}70%{box-shadow:0 0 0 8px rgba(255,107,129,0)}100%{box-shadow:0 0 0 0 rgba(255,107,129,0)}}
+@media (max-width:1020px){.nav ul{display:none}}
+@media (max-width:560px){.brand .tag{display:none}.nav .btn{padding:10px 14px}}
+
+/* hero */
+.hero{position:relative;padding-block:clamp(50px,7vw,100px) clamp(60px,8vw,110px);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 60% at 80% 35%,color-mix(in srgb,var(--volt) 20%,transparent),transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(30px,5vw,80px);align-items:center}
+@media (max-width:920px){.hero .wrap{grid-template-columns:minmax(0,1fr)}}
+.hero h1{font-size:clamp(40px,5.4vw,86px);font-stretch:120%;line-height:.92;letter-spacing:-.045em;margin-top:22px}
+.hero .lead{color:var(--muted);font-size:clamp(17px,1.6vw,20px);max-width:34em;margin-top:26px}
+.hero .lead b{color:var(--ink);font-weight:600}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin-top:48px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--line)}
+.stats div{background:var(--night);padding:16px 18px;display:grid;gap:2px}
+.stats b{font-family:var(--f-display);font-weight:900;font-stretch:120%;font-size:clamp(26px,3vw,38px);line-height:1;letter-spacing:-.04em}
+.stats span{font-size:13px;color:var(--muted);line-height:1.35}
+@media (max-width:560px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* scanner visual */
+.scan{position:relative;aspect-ratio:4/5;max-width:440px;width:100%;justify-self:center}
+.sheet{position:absolute;inset:6% 12% 6% 8%;border-radius:18px;background:linear-gradient(170deg,#f3efe6,#e6dfcf);box-shadow:0 40px 80px -30px rgba(0,0,0,.7);transform:rotate(-3deg);overflow:hidden}
+.sheet .pp{position:absolute;inset:0;padding:12% 11%;display:grid;align-content:start;gap:10px}
+.sheet .pp i{display:block;height:9px;border-radius:3px;background:#b9b09c}
+.sheet .pp i.h{height:16px;width:60%;background:#8d8472;margin-bottom:10px}
+.sheet .pp i.s{width:40%;margin-top:12px}
+.sheet .stamp{position:absolute;right:12%;bottom:10%;width:58px;height:58px;border-radius:50%;border:3px solid rgba(178,56,56,.55);transform:rotate(-14deg)}
+.sheet .dg{position:absolute;inset:0;background:var(--night-2);padding:12% 11%;display:grid;align-content:start;gap:10px;clip-path:inset(0 0 100% 0);animation:dig 7s var(--ease) infinite}
+.sheet .dg i{display:flex;gap:4px;height:9px}
+.sheet .dg i::before{content:"";flex:1;border-radius:3px;background:repeating-linear-gradient(90deg,var(--volt) 0 9px,transparent 9px 13px)}
+.sheet .dg i.h{height:16px;width:60%;margin-bottom:10px}
+.sheet .dg i.h::before{background:repeating-linear-gradient(90deg,var(--ice) 0 16px,transparent 16px 20px)}
+.sheet .dg i.s{width:40%;margin-top:12px}
+.sheet .dg .qr{position:absolute;right:12%;bottom:10%;width:58px;height:58px;border-radius:8px;background:conic-gradient(var(--ice) 25%,var(--volt) 0 50%,var(--ice) 0 75%,var(--volt) 0) 0 0/14px 14px;opacity:.9}
+.beam{position:absolute;left:2%;right:6%;height:3px;top:6%;border-radius:3px;background:var(--ice);box-shadow:0 0 24px 6px color-mix(in srgb,var(--volt) 70%,transparent);animation:beam 7s var(--ease) infinite}
+@keyframes dig{0%,8%{clip-path:inset(0 0 100% 0)}55%,85%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 100% 0)}}
+@keyframes beam{0%,8%{top:6%;opacity:1}55%{top:94%;opacity:1}62%,100%{top:94%;opacity:0}}
+.meta{position:absolute;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;border:1px solid var(--line);background:color-mix(in srgb,var(--night-2) 85%,transparent);backdrop-filter:blur(8px);font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;white-space:nowrap;animation:float 6s ease-in-out infinite}
+.meta i{width:8px;height:8px;border-radius:2px;flex:none}
+.meta.m1{left:-4%;top:14%}.meta.m1 i{background:var(--t-num)}
+.meta.m2{right:-2%;top:36%;animation-delay:-2s}.meta.m2 i{background:var(--ok)}
+.meta.m3{left:2%;bottom:16%;animation-delay:-4s}.meta.m3 i{background:var(--volt-hi)}
+.meta.m4{right:0;bottom:4%;animation-delay:-1s}.meta.m4 i{background:var(--ice)}
+@keyframes float{50%{transform:translateY(-8px)}}
+@media (max-width:920px){.scan{max-width:340px}}
+@media (max-width:420px){.meta{font-size:10px;padding:6px 9px}}
+
+/* profile picker */
+.picker{border:1px solid var(--line);border-radius:28px;padding:clamp(22px,3vw,36px);background:linear-gradient(160deg,var(--night-3),var(--night-2) 70%);display:grid;gap:22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--night);color:var(--muted);font-size:14px;font-weight:600;cursor:pointer;transition:border-color .3s,color .3s,background .3s}
+.chip:hover{border-color:var(--volt-hi);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--volt);border-color:var(--volt);color:#fff}
+.chip .dot{width:8px;height:8px;border-radius:50%}
+.reco{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;min-height:20px}
+.reco a{display:grid;gap:4px;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:var(--night);text-decoration:none;transition:border-color .3s,transform .4s var(--ease)}
+.reco a:hover{border-color:var(--volt-hi);transform:translateY(-2px)}
+.reco a small{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--muted)}
+.reco a b{font-size:15px;line-height:1.3}
+.reco-note{color:var(--muted);font-size:14px}
+
+/* catalogue */
+.toolbar{display:grid;gap:14px;margin-bottom:24px}
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.search{display:flex;align-items:center;gap:10px;flex:1 1 280px;max-width:420px;padding:4px 6px 4px 16px;border:1px solid var(--line);border-radius:999px;background:var(--night-2);transition:border-color .3s,box-shadow .3s}
+.search:focus-within{border-color:var(--volt-hi);box-shadow:0 0 0 5px color-mix(in srgb,var(--volt) 16%,transparent)}
+.search input{flex:1;min-width:0;background:none;border:0;outline:none;padding:10px 0;font-size:15px}
+.search svg{flex:none;color:var(--muted)}
+.sel{background:var(--night-2);border:1px solid var(--line);border-radius:999px;padding:11px 16px;font-size:14px}
+.count{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}
+.count b{color:var(--ink)}
+.toggle{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);cursor:pointer}
+.toggle input{appearance:none;width:40px;height:22px;border-radius:999px;background:var(--line);position:relative;cursor:pointer;transition:background .3s;margin:0}
+.toggle input::after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:var(--ink);transition:transform .3s var(--ease)}
+.toggle input:checked{background:var(--bad)}
+.toggle input:checked::after{transform:translateX(18px)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:1060px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:660px){.grid{grid-template-columns:minmax(0,1fr)}}
+.card{--c:var(--volt-hi);position:relative;display:flex;flex-direction:column;gap:14px;padding:24px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(165deg,var(--night-3),var(--night-2) 65%);overflow:hidden;isolation:isolate;transition:border-color .4s,transform .5s var(--ease),box-shadow .4s}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--c)}
+.card::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(340px circle at var(--mx,100%) var(--my,0%),color-mix(in srgb,var(--c) 16%,transparent),transparent 60%);opacity:0;transition:opacity .4s}
+.card:hover{border-color:color-mix(in srgb,var(--c) 60%,var(--line));transform:translateY(-4px)}
+.card:hover::after{opacity:1}
+.card.flash{box-shadow:0 0 0 2px var(--c)}
+.card.picked{border-color:var(--c)}
+.card[data-t="base"]{--c:var(--t-base)}.card[data-t="num"]{--c:var(--t-num)}.card[data-t="ged"]{--c:var(--t-ged)}.card[data-t="gouv"]{--c:var(--t-gouv)}
+.c-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.c-code{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--c)}
+.c-track{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+.c-dur{text-align:right;flex:none}
+.c-dur b{display:block;font-family:var(--f-display);font-weight:900;font-stretch:120%;font-size:30px;line-height:.9;letter-spacing:-.04em}
+.c-dur small{font-size:12px;color:var(--muted)}
+.card h3{font-size:22px;font-stretch:106%;line-height:1.12;letter-spacing:-.02em}
+.card .obj{color:var(--muted);font-size:14.5px}
+.c-tags{display:flex;flex-wrap:wrap;gap:6px}
+.c-tags span{font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.c-tags span.lv{color:var(--ink);border-color:color-mix(in srgb,var(--c) 50%,var(--line))}
+.c-live{display:flex;align-items:center;gap:10px;font-size:13px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--bad) 10%,var(--night));border:1px solid color-mix(in srgb,var(--bad) 35%,transparent)}
+.c-live i{width:8px;height:8px;border-radius:50%;background:var(--bad);flex:none;animation:ping 1.8s infinite}
+.c-live a{margin-left:auto;color:#ffc2cc;font-weight:700;text-decoration:none;white-space:nowrap}
+.card details{border-top:1px solid var(--line);padding-top:12px}
+.card summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px}
+.card summary::-webkit-details-marker{display:none}
+.card summary i{width:22px;height:22px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-style:normal;transition:transform .4s var(--ease)}
+.card details[open] summary i{transform:rotate(45deg)}
+.card .prog{display:grid;gap:14px;padding-top:14px;font-size:14px}
+.card .prog ol,.card .prog ul{margin:0;padding-left:20px;display:grid;gap:6px;color:var(--ink)}
+.card .prog ol li::marker{font-family:var(--f-mono);color:var(--c);font-size:12px}
+.card .prog ul{list-style:none;padding:0}
+.card .prog ul li{padding-left:22px;position:relative;color:var(--muted)}
+.card .prog ul li::before{content:"✓";position:absolute;left:0;color:var(--c);font-weight:700}
+.card .prog .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.c-actions{margin-top:auto;display:flex;gap:10px;align-items:center;justify-content:space-between;padding-top:6px}
+.c-fmt{display:flex;gap:6px}
+.c-fmt span{width:30px;height:30px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;color:var(--muted)}
+.pick{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--night);font-weight:700;font-size:14px;cursor:pointer;transition:background .3s,border-color .3s,color .3s}
+.pick:hover{border-color:var(--c)}
+.pick[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:var(--night)}
+.pick b{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;border:1.5px solid currentColor;font-size:12px;line-height:1}
+.custom{display:flex;flex-direction:column;justify-content:space-between;gap:18px;padding:28px;border:1px dashed color-mix(in srgb,var(--volt) 55%,var(--line));border-radius:24px;background:radial-gradient(80% 120% at 100% 0%,color-mix(in srgb,var(--volt) 14%,transparent),transparent 70%)}
+.custom h3{font-size:clamp(22px,2.2vw,30px)}
+.custom p{color:var(--muted);font-size:15px;max-width:34em}
+.custom .btn{align-self:flex-start}
+.none{grid-column:1/-1;border:1px dashed var(--line);border-radius:20px;padding:30px;text-align:center;color:var(--muted)}
+
+/* tracks */
+.tracks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:1060px){.tracks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.tracks{grid-template-columns:minmax(0,1fr)}}
+.track{--c:var(--volt-hi);border:1px solid var(--line);border-radius:24px;padding:24px;display:grid;gap:16px;align-content:start;background:var(--night-2)}
+.track h3{font-size:22px;display:flex;align-items:center;gap:10px}
+.track h3 i{width:12px;height:12px;border-radius:4px;background:var(--c);flex:none}
+.track p{color:var(--muted);font-size:14.5px}
+.track ol{list-style:none;margin:0;padding:0;display:grid;gap:0;position:relative}
+.track ol::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--c),transparent)}
+.track li a{display:grid;grid-template-columns:16px minmax(0,1fr);gap:12px;padding:8px 0;text-decoration:none;font-size:14px;line-height:1.35}
+.track li a::before{content:"";width:16px;height:16px;border-radius:50%;border:2px solid var(--c);background:var(--night-2);margin-top:1px;position:relative}
+.track li a:hover span{color:var(--c)}
+.track li small{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted)}
+.track .tot{font-family:var(--f-mono);font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+.track .tot b{color:var(--ink)}
+
+/* formats */
+.formats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.formats{grid-template-columns:minmax(0,1fr)}}
+.fmt{position:relative;border:1px solid var(--line);border-radius:26px;padding:28px;display:grid;gap:14px;align-content:start;background:linear-gradient(165deg,var(--night-3),var(--night-2) 70%);overflow:hidden}
+.fmt .ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:color-mix(in srgb,var(--volt) 18%,var(--night));color:var(--ice)}
+.fmt.live .ic{background:color-mix(in srgb,var(--bad) 18%,var(--night));color:#ffc2cc}
+.fmt h3{font-size:24px}
+.fmt p{color:var(--muted);font-size:15px}
+.fmt ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:8px;font-size:14.5px}
+.fmt li{padding-left:24px;position:relative}
+.fmt li::before{content:"";position:absolute;left:0;top:.55em;width:12px;height:2px;background:var(--volt-hi)}
+.fmt .btn{justify-self:start;margin-top:8px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;counter-reset:st;border:1px solid var(--line);border-radius:26px;overflow:hidden}
+@media (max-width:980px){.steps{grid-template-columns:minmax(0,1fr)}}
+.step{padding:26px 22px;display:grid;gap:10px;align-content:start;border-right:1px solid var(--line);position:relative}
+.step:last-child{border-right:0}
+@media (max-width:980px){.step{border-right:0;border-bottom:1px solid var(--line);grid-template-columns:auto minmax(0,1fr);column-gap:18px}.step:last-child{border-bottom:0}.step p{grid-column:2}}
+.step::before{counter-increment:st;content:counter(st,decimal-leading-zero);font-family:var(--f-mono);font-size:12px;color:var(--volt-hi);letter-spacing:.1em}
+.step h3{font-size:19px;font-stretch:104%}
+.step p{color:var(--muted);font-size:14px}
+
+/* certificate */
+.cert{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(24px,5vw,70px);align-items:center;border:1px solid var(--line);border-radius:30px;padding:clamp(24px,4vw,50px);background:radial-gradient(70% 90% at 100% 0%,color-mix(in srgb,var(--volt) 16%,transparent),transparent 70%),var(--night-2)}
+@media (max-width:860px){.cert{grid-template-columns:minmax(0,1fr)}}
+.cert h2{font-size:clamp(30px,4vw,52px);margin:16px 0 18px}
+.cert p{color:var(--muted)}
+.verif{display:flex;gap:8px;padding:6px;border:1px solid var(--line);border-radius:999px;background:var(--night);margin-top:24px;max-width:460px}
+.verif input{flex:1;min-width:0;background:none;border:0;outline:none;padding:10px 14px;font-family:var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.paper{position:relative;background:#f6f3ec;color:#0b1430;border-radius:16px;padding:28px;transform:rotate(2deg);box-shadow:0 40px 70px -30px rgba(0,0,0,.8);display:grid;gap:12px;max-width:420px;justify-self:center;width:100%}
+.paper .h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.paper .h .lg{height:20px;width:auto;color:#0b1430}
+.paper .h span{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:#5a6280}
+.paper b{font-family:var(--f-display);font-weight:900;font-stretch:115%;font-size:22px;letter-spacing:-.02em}
+.paper p{color:#3c4566;font-size:13px}
+.paper .f{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;border-top:1px dashed #c9c3b4;padding-top:12px}
+.paper .f small{font-family:var(--f-mono);font-size:10px;color:#5a6280;letter-spacing:.06em}
+.paper .qr{width:64px;height:64px;border-radius:6px;background:conic-gradient(#0b1430 25%,#f6f3ec 0 50%,#0b1430 0 75%,#f6f3ec 0) 0 0/12px 12px;border:4px solid #0b1430}
+
+/* FAQ */
+.faq{display:grid;gap:10px;max-width:900px}
+.faq details{border:1px solid var(--line);border-radius:18px;background:var(--night-2);transition:border-color .3s}
+.faq details[open]{border-color:color-mix(in srgb,var(--volt) 55%,var(--line))}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;font-weight:700;font-size:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{flex:none;width:26px;height:26px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-style:normal;transition:transform .4s var(--ease)}
+.faq details[open] summary i{transform:rotate(45deg)}
+.faq details p{padding:0 22px 20px;color:var(--muted)}
+
+/* request form */
+.req{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,5vw,70px);align-items:start}
+@media (max-width:920px){.req{grid-template-columns:minmax(0,1fr)}}
+.req-side{display:grid;gap:18px;position:sticky;top:100px}
+@media (max-width:920px){.req-side{position:static}}
+.req-side h2{font-size:clamp(34px,5vw,64px)}
+.req-side p{color:var(--muted)}
+.direct{display:flex;flex-wrap:wrap;gap:8px}
+.direct a{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:14px;border:1px solid var(--line);text-decoration:none;font-size:14px;font-weight:600;transition:border-color .3s}
+.direct a:hover{border-color:var(--volt-hi)}
+form.rq{border:1px solid var(--line);border-radius:28px;padding:clamp(20px,3vw,34px);background:var(--night-2);display:grid;gap:22px}
+.fl{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:10px}
+.sel-list{display:flex;flex-wrap:wrap;gap:8px;min-height:44px;align-items:center}
+.sel-list .tagm{display:inline-flex;align-items:center;gap:8px;padding:8px 8px 8px 14px;border-radius:999px;background:var(--night);border:1px solid var(--line);font-size:13.5px}
+.sel-list .tagm button{width:24px;height:24px;border-radius:50%;border:0;background:var(--line);cursor:pointer;line-height:1}
+.sel-list .tagm button:hover{background:var(--bad)}
+.sel-list .empty-sel{color:var(--muted);font-size:14px}
+.radios{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (max-width:560px){.radios{grid-template-columns:minmax(0,1fr)}}
+.radios label{position:relative;display:grid;gap:2px;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:var(--night);cursor:pointer;transition:border-color .3s,background .3s}
+.radios input{position:absolute;opacity:0;pointer-events:none}
+.radios label:has(input:checked){border-color:var(--volt-hi);background:color-mix(in srgb,var(--volt) 14%,var(--night))}
+.radios label:has(input:focus-visible){outline:2px solid var(--volt-hi);outline-offset:3px}
+.radios b{font-size:14.5px}
+.radios small{color:var(--muted);font-size:12.5px;line-height:1.35}
+.people{display:flex;align-items:center;gap:16px}
+.people input[type=range]{flex:1;accent-color:var(--volt)}
+.people output{font-family:var(--f-display);font-weight:900;font-stretch:120%;font-size:30px;min-width:3ch;text-align:right}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:560px){.fields{grid-template-columns:minmax(0,1fr)}}
+.fields .full{grid-column:1/-1}
+.f{display:grid;gap:6px}
+.f label{font-size:13px;color:var(--muted);font-weight:600}
+.f input,.f textarea{width:100%;min-width:0;background:var(--night);border:1px solid var(--line);border-radius:14px;padding:13px 14px;font-size:15px;transition:border-color .3s}
+.f textarea{min-height:110px;resize:vertical}
+.f input:focus,.f textarea:focus{outline:none;border-color:var(--volt-hi)}
+.f.bad input{border-color:var(--bad)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-foot{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.form-foot small{color:var(--muted);font-size:12.5px;max-width:30em}
+.form-foot small a{color:var(--muted)}
+.fmsg{font-size:14px;min-height:1.3em}
+.fmsg.bad{color:#ffb4c0}
+.done{display:grid;gap:14px;text-align:center;justify-items:center;padding:20px 0}
+.done .ok{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--ok) 20%,var(--night));color:var(--ok)}
+.done h3{font-size:28px}
+.done p{color:var(--muted);max-width:30em}
+.done .no{font-family:var(--f-mono);letter-spacing:.1em;color:var(--ice)}
+
+/* basket bar */
+.basket{visibility:hidden;position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140%);z-index:60;display:flex;align-items:center;gap:14px;padding:8px 8px 8px 20px;border-radius:999px;background:color-mix(in srgb,var(--night-3) 92%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:0 20px 50px -20px rgba(0,0,0,.8);transition:transform .6s var(--ease);max-width:calc(100vw - 32px)}
+.basket.on{visibility:visible;transform:translate(-50%,0)}
+.basket span{font-size:14px;white-space:nowrap}
+.basket b{font-family:var(--f-display);font-weight:900;font-size:18px;margin-right:4px}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-area-inset-bottom,0px))}
+footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
+footer nav{display:flex;flex-wrap:wrap;gap:18px;font-size:14px;color:var(--muted)}
+footer nav a{text-decoration:none}
+footer nav a:hover{color:var(--ink)}
+footer small{color:var(--muted);font-size:13px}
+footer .lg{height:24px;width:auto;color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Archivexa, retour au site"><svg class="lg" viewBox="0 0 390.5 64" role="img" aria-label="Archivexa"><rect class="lg-bg" width="64" height="64" rx="14" fill="#2f6bff"/><rect class="lg-b1" x="11" y="13" width="42" height="9" rx="2.5" fill="#ffffff"/><rect class="lg-b2" x="14" y="25" width="36" height="26" rx="3" fill="#ffffff"/><rect class="lg-b3" x="25" y="31" width="14" height="5" rx="2" fill="#2f6bff"/><rect class="lg-b4" x="41" y="42" width="13" height="13" rx="3" fill="#a9c6ff" stroke="#2f6bff" stroke-width="3"/><g class="lg-word"><path class="lg-l" d="M94.03 47.28Q91.59 47.28 89.42 46.89Q87.25 46.5 85.59 45.54Q83.93 44.59 82.99 42.93Q82.05 41.27 82.05 38.72Q82.05 35.3 83.8 33.29Q85.55 31.27 88.78 30.29Q92 29.31 96.41 29Q100.83 28.7 106.15 28.7V27.49Q106.15 25.91 105.41 24.93Q104.66 23.95 103.17 23.49Q101.69 23.03 99.39 23.03Q97.62 23.03 96.11 23.33Q94.6 23.62 93.69 24.24Q92.78 24.85 92.78 25.84V26.31H83.12Q83.06 26.08 83.05 25.88Q83.04 25.69 83.04 25.42Q83.04 22.81 84.96 20.83Q86.88 18.85 90.62 17.75Q94.35 16.65 99.8 16.65Q104.88 16.65 108.45 17.62Q112.02 18.59 113.9 20.71Q115.79 22.83 115.79 26.35V38.4Q115.79 39.37 116.25 39.95Q116.71 40.53 117.63 40.53H120.28V46.26Q119.55 46.56 117.98 46.92Q116.41 47.27 114.51 47.27Q112.05 47.27 110.5 46.73Q108.95 46.19 108.13 45.25Q107.32 44.3 106.98 43.13H106.56Q105.13 44.39 103.24 45.34Q101.35 46.28 99.05 46.78Q96.75 47.28 94.03 47.28ZM96.92 40.9Q98.26 40.9 99.84 40.57Q101.42 40.25 102.87 39.59Q104.31 38.94 105.23 37.94Q106.15 36.93 106.15 35.57V33.85Q101.27 33.85 98.04 34.29Q94.81 34.73 93.24 35.66Q91.66 36.59 91.66 38.11Q91.66 39.23 92.4 39.83Q93.15 40.44 94.37 40.67Q95.58 40.9 96.92 40.9Z" fill="currentColor"/><path class="lg-l" d="M122.83 46.61V17.31H130.66L131.34 22.17H131.79Q132.56 20.49 133.78 19.24Q135.01 17.98 136.64 17.3Q138.28 16.62 140.2 16.62Q141.28 16.62 142.22 16.79Q143.17 16.95 143.92 17.24V25.12H139.73Q137.81 25.12 136.44 25.71Q135.06 26.31 134.18 27.37Q133.31 28.44 132.89 29.84Q132.46 31.23 132.46 32.87V46.61Z" fill="currentColor"/><path class="lg-l" d="M163.72 47.28Q158.18 47.28 154.14 45.59Q150.1 43.91 147.91 40.5Q145.73 37.1 145.73 31.95Q145.73 26.79 147.92 23.39Q150.11 19.99 154.15 18.32Q158.18 16.64 163.72 16.64Q167.33 16.64 170.45 17.39Q173.57 18.14 175.93 19.68Q178.29 21.21 179.59 23.51Q180.9 25.8 180.9 28.87H171.21Q171.21 27.13 170.24 25.9Q169.27 24.67 167.59 24.03Q165.91 23.39 163.71 23.39Q161.01 23.39 159.21 24.34Q157.41 25.3 156.52 27.07Q155.62 28.84 155.62 31.3V32.63Q155.62 35.05 156.54 36.84Q157.46 38.62 159.33 39.58Q161.21 40.54 164.05 40.54Q166.24 40.54 167.93 39.85Q169.63 39.15 170.61 37.89Q171.6 36.63 171.6 35H180.9Q180.9 38.1 179.58 40.42Q178.27 42.74 175.93 44.26Q173.59 45.78 170.46 46.53Q167.33 47.28 163.72 47.28Z" fill="currentColor"/><path class="lg-l" d="M185.83 46.61V6.37H195.46V20.9H195.87Q197.23 19.38 198.96 18.45Q200.68 17.52 202.62 17.08Q204.57 16.65 206.54 16.65Q210.47 16.65 213.12 17.94Q215.77 19.23 217.12 21.83Q218.48 24.44 218.48 28.41V46.61H208.84V29.79Q208.84 28.32 208.44 27.23Q208.04 26.13 207.28 25.42Q206.53 24.72 205.42 24.37Q204.32 24.02 202.89 24.02Q200.83 24.02 199.15 24.88Q197.46 25.75 196.46 27.27Q195.46 28.79 195.46 30.79V46.61Z" fill="currentColor"/><path class="lg-l" d="M224.44 13.22V6.37H234.07V13.22ZM224.44 46.61V17.31H234.07V46.61Z" fill="currentColor"/><path class="lg-l" d="M249.85 46.61 236.7 17.31H247.11L252.3 30.12Q252.65 30.96 253.13 32.32Q253.6 33.68 254.12 35.1Q254.63 36.53 255 37.66H255.45Q255.83 36.54 256.31 35.12Q256.8 33.69 257.29 32.33Q257.78 30.96 258.13 30.08L263.24 17.31H273.22L260.05 46.61Z" fill="currentColor"/><path class="lg-l" d="M293.05 47.28Q287.38 47.28 283.23 45.65Q279.09 44.02 276.84 40.62Q274.59 37.22 274.59 31.97Q274.59 26.81 276.81 23.41Q279.03 20 283.09 18.32Q287.15 16.65 292.67 16.65Q298.37 16.65 302.36 18.29Q306.35 19.93 308.43 23.25Q310.52 26.57 310.52 31.63V33.91H284.59Q284.71 36.3 285.71 37.86Q286.71 39.42 288.59 40.16Q290.48 40.89 293.15 40.89Q294.58 40.89 295.9 40.58Q297.22 40.27 298.27 39.68Q299.31 39.09 299.95 38.24Q300.58 37.39 300.65 36.29H310.42Q310.42 38.84 309.17 40.88Q307.92 42.92 305.61 44.35Q303.31 45.77 300.11 46.52Q296.92 47.28 293.05 47.28ZM284.63 28.64H300.35Q300.35 27.28 299.81 26.25Q299.27 25.21 298.28 24.5Q297.29 23.78 295.93 23.41Q294.58 23.04 292.96 23.04Q290.49 23.04 288.72 23.71Q286.94 24.38 285.92 25.64Q284.9 26.9 284.63 28.64Z" fill="currentColor"/><path class="lg-l" d="M312.16 46.61 325.41 31.25 313.21 17.31H325.25L332.12 25.69H332.44L339.28 17.31H350.6L338.29 31.4L351.34 46.61H339.39L331.62 36.99H331.3L323.52 46.61Z" fill="var(--volt-hi)"/><path class="lg-l" d="M364.2 47.28Q361.76 47.28 359.59 46.89Q357.41 46.5 355.75 45.54Q354.1 44.59 353.16 42.93Q352.22 41.27 352.22 38.72Q352.22 35.3 353.97 33.29Q355.72 31.27 358.94 30.29Q362.17 29.31 366.58 29Q370.99 28.7 376.32 28.7V27.49Q376.32 25.91 375.57 24.93Q374.83 23.95 373.34 23.49Q371.86 23.03 369.55 23.03Q367.79 23.03 366.28 23.33Q364.76 23.62 363.85 24.24Q362.94 24.85 362.94 25.84V26.31H353.29Q353.23 26.08 353.22 25.88Q353.21 25.69 353.21 25.42Q353.21 22.81 355.13 20.83Q357.05 18.85 360.78 17.75Q364.52 16.65 369.97 16.65Q375.05 16.65 378.62 17.62Q382.19 18.59 384.07 20.71Q385.96 22.83 385.96 26.35V38.4Q385.96 39.37 386.41 39.95Q386.87 40.53 387.8 40.53H390.44V46.26Q389.72 46.56 388.15 46.92Q386.58 47.27 384.68 47.27Q382.22 47.27 380.67 46.73Q379.12 46.19 378.3 45.25Q377.49 44.3 377.15 43.13H376.73Q375.3 44.39 373.41 45.34Q371.52 46.28 369.22 46.78Q366.92 47.28 364.2 47.28ZM367.09 40.9Q368.43 40.9 370.01 40.57Q371.59 40.25 373.04 39.59Q374.48 38.94 375.4 37.94Q376.32 36.93 376.32 35.57V33.85Q371.43 33.85 368.21 34.29Q364.98 34.73 363.4 35.66Q361.82 36.59 361.82 38.11Q361.82 39.23 362.57 39.83Q363.32 40.44 364.53 40.67Q365.75 40.9 367.09 40.9Z" fill="currentColor"/></g></svg><span class="tag">Formations</span></a>
+    <ul>
+      <li><a href="#catalogue">Catalogue</a></li>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#formats">Formats</a></li>
+      <li><a href="#attestation">Attestation</a></li>
+      <li><a href="#questions">Questions</a></li>
+      <li><a href="/live"><span class="live-dot" aria-hidden="true"></span>Live</a></li>
+    </ul>
+    <a class="btn btn-main btn-sm" href="#demande">Inscrire mon équipe</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="hTitle">
+  <div class="wrap">
+    <div>
+      <span class="cote">Archivexa Formations · Archives &amp; numérique</span>
+      <h1 id="hTitle">Faire entrer vos archives dans <em>l'ère numérique.</em></h1>
+      <p class="lead">Treize modules pour <b>numériser sans perdre</b>, <b>classer sans chercher</b> et <b>conserver sans craindre</b> l'obsolescence. Pensés pour les administrations, entreprises, banques, ONG et établissements de santé du Bénin et de la sous-région.</p>
+      <div class="cta-row">
+        <a class="btn btn-main" href="#catalogue">Voir le catalogue <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn" href="#commencer">Par où commencer ?</a>
+      </div>
+      <div class="stats" aria-label="En bref">
+        <div><b id="stMods">13</b><span>modules</span></div>
+        <div><b>4</b><span>parcours</span></div>
+        <div><b>3</b><span>formats, dont le direct</span></div>
+        <div><b>QR</b><span>attestation vérifiable</span></div>
+      </div>
+    </div>
+    <div class="scan" aria-hidden="true">
+      <div class="sheet">
+        <div class="pp"><i class="h"></i><i></i><i style="width:92%"></i><i style="width:84%"></i><i></i><i style="width:70%"></i><i class="s"></i><i></i><i style="width:88%"></i><i style="width:76%"></i><i style="width:94%"></i><i style="width:52%"></i><span class="stamp"></span></div>
+        <div class="dg"><i class="h"></i><i></i><i style="width:92%"></i><i style="width:84%"></i><i></i><i style="width:70%"></i><i class="s"></i><i></i><i style="width:88%"></i><i style="width:76%"></i><i style="width:94%"></i><i style="width:52%"></i><span class="qr"></span></div>
+      </div>
+      <div class="beam"></div>
+      <span class="meta m1"><i></i>PDF/A-2b · 300 dpi</span>
+      <span class="meta m2"><i></i>SHA-256 vérifié</span>
+      <span class="meta m3"><i></i>OCR · texte cherchable</span>
+      <span class="meta m4"><i></i>AXA-FIN-2026-017</span>
+    </div>
+  </div>
+</section>
+
+<section id="commencer" style="padding-top:0" aria-labelledby="pkTitle">
+  <div class="wrap">
+    <div class="picker reveal">
+      <div>
+        <span class="cote">Par où commencer ?</span>
+        <h2 id="pkTitle" style="font-size:clamp(26px,3vw,38px);margin-top:12px">Vous êtes…</h2>
+      </div>
+      <div class="chips" role="group" aria-label="Votre profil" id="profiles"></div>
+      <p class="reco-note" id="recoNote">Choisissez un profil : nous vous indiquons les modules à suivre en premier.</p>
+      <div class="reco" id="reco" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section id="catalogue" style="padding-top:0" aria-labelledby="catTitle">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="cote">Le catalogue</span><h2 id="catTitle">Du dossier papier au <em>fonds numérique.</em></h2></div>
+      <p>Chaque module se suit seul ou dans un parcours. Ajoutez ceux qui vous intéressent à votre demande : nous vous répondons avec un programme et un devis adaptés à votre équipe.</p>
+    </div>
+    <div class="toolbar">
+      <div class="tool-row">
+        <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="sr">Rechercher une formation</span><input type="search" id="q" placeholder="PDF/A, GED, e-mails, IA…" autocomplete="off"></label>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+          <label><span class="sr">Niveau</span><select class="sel" id="lvl"><option value="">Tous les niveaux</option><option>Débutant</option><option>Intermédiaire</option><option>Avancé</option></select></label>
+          <label class="toggle"><input type="checkbox" id="onlyLive"> En direct prochainement</label>
+        </div>
+      </div>
+      <div class="tool-row">
+        <div class="chips" role="group" aria-label="Filtrer par parcours" id="trackFilter"></div>
+        <span class="count" aria-live="polite"><b id="cnt">13</b> modules</span>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section id="parcours" style="padding-top:0" aria-labelledby="trTitle">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="cote">Les parcours</span><h2 id="trTitle">Quatre chemins, <em>une même logique.</em></h2></div>
+      <p>Un parcours enchaîne les modules dans l'ordre où ils servent sur le terrain. Il se suit d'un bloc ou au rythme de votre organisation, une journée par mois par exemple.</p>
+    </div>
+    <div class="tracks" id="tracks"></div>
+  </div>
+</section>
+
+<section id="formats" style="padding-top:0" aria-labelledby="fmTitle">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="cote">Les formats</span><h2 id="fmTitle">En salle, chez vous <em>ou en direct.</em></h2></div>
+      <p>Le contenu est le même. Seuls changent le lieu et la taille du groupe. Les cas pratiques se font toujours sur des documents proches des vôtres.</p>
+    </div>
+    <div class="formats">
+      <article class="fmt reveal">
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/></svg></span>
+        <h3>Interentreprises</h3>
+        <p>Sessions ouvertes à Cotonou, avec des participants de plusieurs organisations.</p>
+        <ul><li>Groupes de 6 à 14 personnes</li><li>Supports et modèles à emporter</li><li>Échanges entre pairs</li></ul>
+      </article>
+      <article class="fmt reveal">
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span>
+        <h3>Dans vos locaux</h3>
+        <p>Une formation pour votre équipe seule, construite à partir de vos propres documents et outils.</p>
+        <ul><li>Programme ajusté après un échange</li><li>Exercices sur vos dossiers réels</li><li>Partout au Bénin, et au-delà sur demande</li></ul>
+      </article>
+      <article class="fmt live reveal">
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="m17 10 5-3v10l-5-3"/></svg></span>
+        <h3>Archivexa Live</h3>
+        <p>La salle de formation en ligne d'Archivexa : formateur, supports, questions et programme au même endroit.</p>
+        <ul><li>Mode économie de données</li><li>Exercices de classement en direct</li><li>Émargement automatique</li></ul>
+        <a class="btn btn-sm" href="/live">Voir les sessions <span class="arr" aria-hidden="true">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0" aria-labelledby="stTitle">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="cote">Le déroulé</span><h2 id="stTitle">De la demande <em>au suivi.</em></h2></div>
+      <p>Une formation n'est utile que si elle change les pratiques. Nous revenons vers vous un mois plus tard pour le vérifier.</p>
+    </div>
+    <ol class="steps reveal" style="list-style:none;margin:0;padding:0">
+      <li class="step"><h3>Échange</h3><p>30 minutes pour comprendre votre fonds, vos outils et le niveau de l'équipe.</p></li>
+      <li class="step"><h3>Programme</h3><p>Une proposition écrite : modules, durée, format, devis.</p></li>
+      <li class="step"><h3>Formation</h3><p>Apports courts, puis pratique sur des documents proches des vôtres.</p></li>
+      <li class="step"><h3>Évaluation</h3><p>Un exercice final et une attestation à chaque participant.</p></li>
+      <li class="step"><h3>Suivi à 30 jours</h3><p>Un point pour lever les blocages rencontrés sur le terrain.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="attestation" style="padding-top:0" aria-labelledby="ceTitle">
+  <div class="wrap">
+    <div class="cert reveal">
+      <div>
+        <span class="cote">L'attestation</span>
+        <h2 id="ceTitle">Une attestation que l'on peut vérifier.</h2>
+        <p>Chaque participant reçoit une attestation portant un numéro unique et un QR code. Un employeur ou un service RH peut confirmer son authenticité en quelques secondes, sans nous appeler. En session Live, elle est délivrée d'elle-même aux participants présents au moins 80 % du temps.</p>
+        <form class="verif" id="verif" novalidate>
+          <label class="sr" for="verifIn">Numéro d'attestation</label>
+          <input id="verifIn" placeholder="Numéro d'attestation" autocomplete="off" spellcheck="false">
+          <button class="btn btn-main btn-sm" type="submit">Vérifier</button>
+        </form>
+      </div>
+      <div class="paper" aria-hidden="true">
+        <div class="h"><svg class="lg" viewBox="0 0 390.5 64" role="img" aria-label="Archivexa"><rect class="lg-bg" width="64" height="64" rx="14" fill="#2f6bff"/><rect class="lg-b1" x="11" y="13" width="42" height="9" rx="2.5" fill="#ffffff"/><rect class="lg-b2" x="14" y="25" width="36" height="26" rx="3" fill="#ffffff"/><rect class="lg-b3" x="25" y="31" width="14" height="5" rx="2" fill="#2f6bff"/><rect class="lg-b4" x="41" y="42" width="13" height="13" rx="3" fill="#a9c6ff" stroke="#2f6bff" stroke-width="3"/><g class="lg-word"><path class="lg-l" d="M94.03 47.28Q91.59 47.28 89.42 46.89Q87.25 46.5 85.59 45.54Q83.93 44.59 82.99 42.93Q82.05 41.27 82.05 38.72Q82.05 35.3 83.8 33.29Q85.55 31.27 88.78 30.29Q92 29.31 96.41 29Q100.83 28.7 106.15 28.7V27.49Q106.15 25.91 105.41 24.93Q104.66 23.95 103.17 23.49Q101.69 23.03 99.39 23.03Q97.62 23.03 96.11 23.33Q94.6 23.62 93.69 24.24Q92.78 24.85 92.78 25.84V26.31H83.12Q83.06 26.08 83.05 25.88Q83.04 25.69 83.04 25.42Q83.04 22.81 84.96 20.83Q86.88 18.85 90.62 17.75Q94.35 16.65 99.8 16.65Q104.88 16.65 108.45 17.62Q112.02 18.59 113.9 20.71Q115.79 22.83 115.79 26.35V38.4Q115.79 39.37 116.25 39.95Q116.71 40.53 117.63 40.53H120.28V46.26Q119.55 46.56 117.98 46.92Q116.41 47.27 114.51 47.27Q112.05 47.27 110.5 46.73Q108.95 46.19 108.13 45.25Q107.32 44.3 106.98 43.13H106.56Q105.13 44.39 103.24 45.34Q101.35 46.28 99.05 46.78Q96.75 47.28 94.03 47.28ZM96.92 40.9Q98.26 40.9 99.84 40.57Q101.42 40.25 102.87 39.59Q104.31 38.94 105.23 37.94Q106.15 36.93 106.15 35.57V33.85Q101.27 33.85 98.04 34.29Q94.81 34.73 93.24 35.66Q91.66 36.59 91.66 38.11Q91.66 39.23 92.4 39.83Q93.15 40.44 94.37 40.67Q95.58 40.9 96.92 40.9Z" fill="currentColor"/><path class="lg-l" d="M122.83 46.61V17.31H130.66L131.34 22.17H131.79Q132.56 20.49 133.78 19.24Q135.01 17.98 136.64 17.3Q138.28 16.62 140.2 16.62Q141.28 16.62 142.22 16.79Q143.17 16.95 143.92 17.24V25.12H139.73Q137.81 25.12 136.44 25.71Q135.06 26.31 134.18 27.37Q133.31 28.44 132.89 29.84Q132.46 31.23 132.46 32.87V46.61Z" fill="currentColor"/><path class="lg-l" d="M163.72 47.28Q158.18 47.28 154.14 45.59Q150.1 43.91 147.91 40.5Q145.73 37.1 145.73 31.95Q145.73 26.79 147.92 23.39Q150.11 19.99 154.15 18.32Q158.18 16.64 163.72 16.64Q167.33 16.64 170.45 17.39Q173.57 18.14 175.93 19.68Q178.29 21.21 179.59 23.51Q180.9 25.8 180.9 28.87H171.21Q171.21 27.13 170.24 25.9Q169.27 24.67 167.59 24.03Q165.91 23.39 163.71 23.39Q161.01 23.39 159.21 24.34Q157.41 25.3 156.52 27.07Q155.62 28.84 155.62 31.3V32.63Q155.62 35.05 156.54 36.84Q157.46 38.62 159.33 39.58Q161.21 40.54 164.05 40.54Q166.24 40.54 167.93 39.85Q169.63 39.15 170.61 37.89Q171.6 36.63 171.6 35H180.9Q180.9 38.1 179.58 40.42Q178.27 42.74 175.93 44.26Q173.59 45.78 170.46 46.53Q167.33 47.28 163.72 47.28Z" fill="currentColor"/><path class="lg-l" d="M185.83 46.61V6.37H195.46V20.9H195.87Q197.23 19.38 198.96 18.45Q200.68 17.52 202.62 17.08Q204.57 16.65 206.54 16.65Q210.47 16.65 213.12 17.94Q215.77 19.23 217.12 21.83Q218.48 24.44 218.48 28.41V46.61H208.84V29.79Q208.84 28.32 208.44 27.23Q208.04 26.13 207.28 25.42Q206.53 24.72 205.42 24.37Q204.32 24.02 202.89 24.02Q200.83 24.02 199.15 24.88Q197.46 25.75 196.46 27.27Q195.46 28.79 195.46 30.79V46.61Z" fill="currentColor"/><path class="lg-l" d="M224.44 13.22V6.37H234.07V13.22ZM224.44 46.61V17.31H234.07V46.61Z" fill="currentColor"/><path class="lg-l" d="M249.85 46.61 236.7 17.31H247.11L252.3 30.12Q252.65 30.96 253.13 32.32Q253.6 33.68 254.12 35.1Q254.63 36.53 255 37.66H255.45Q255.83 36.54 256.31 35.12Q256.8 33.69 257.29 32.33Q257.78 30.96 258.13 30.08L263.24 17.31H273.22L260.05 46.61Z" fill="currentColor"/><path class="lg-l" d="M293.05 47.28Q287.38 47.28 283.23 45.65Q279.09 44.02 276.84 40.62Q274.59 37.22 274.59 31.97Q274.59 26.81 276.81 23.41Q279.03 20 283.09 18.32Q287.15 16.65 292.67 16.65Q298.37 16.65 302.36 18.29Q306.35 19.93 308.43 23.25Q310.52 26.57 310.52 31.63V33.91H284.59Q284.71 36.3 285.71 37.86Q286.71 39.42 288.59 40.16Q290.48 40.89 293.15 40.89Q294.58 40.89 295.9 40.58Q297.22 40.27 298.27 39.68Q299.31 39.09 299.95 38.24Q300.58 37.39 300.65 36.29H310.42Q310.42 38.84 309.17 40.88Q307.92 42.92 305.61 44.35Q303.31 45.77 300.11 46.52Q296.92 47.28 293.05 47.28ZM284.63 28.64H300.35Q300.35 27.28 299.81 26.25Q299.27 25.21 298.28 24.5Q297.29 23.78 295.93 23.41Q294.58 23.04 292.96 23.04Q290.49 23.04 288.72 23.71Q286.94 24.38 285.92 25.64Q284.9 26.9 284.63 28.64Z" fill="currentColor"/><path class="lg-l" d="M312.16 46.61 325.41 31.25 313.21 17.31H325.25L332.12 25.69H332.44L339.28 17.31H350.6L338.29 31.4L351.34 46.61H339.39L331.62 36.99H331.3L323.52 46.61Z" fill="var(--volt-hi)"/><path class="lg-l" d="M364.2 47.28Q361.76 47.28 359.59 46.89Q357.41 46.5 355.75 45.54Q354.1 44.59 353.16 42.93Q352.22 41.27 352.22 38.72Q352.22 35.3 353.97 33.29Q355.72 31.27 358.94 30.29Q362.17 29.31 366.58 29Q370.99 28.7 376.32 28.7V27.49Q376.32 25.91 375.57 24.93Q374.83 23.95 373.34 23.49Q371.86 23.03 369.55 23.03Q367.79 23.03 366.28 23.33Q364.76 23.62 363.85 24.24Q362.94 24.85 362.94 25.84V26.31H353.29Q353.23 26.08 353.22 25.88Q353.21 25.69 353.21 25.42Q353.21 22.81 355.13 20.83Q357.05 18.85 360.78 17.75Q364.52 16.65 369.97 16.65Q375.05 16.65 378.62 17.62Q382.19 18.59 384.07 20.71Q385.96 22.83 385.96 26.35V38.4Q385.96 39.37 386.41 39.95Q386.87 40.53 387.8 40.53H390.44V46.26Q389.72 46.56 388.15 46.92Q386.58 47.27 384.68 47.27Q382.22 47.27 380.67 46.73Q379.12 46.19 378.3 45.25Q377.49 44.3 377.15 43.13H376.73Q375.3 44.39 373.41 45.34Q371.52 46.28 369.22 46.78Q366.92 47.28 364.2 47.28ZM367.09 40.9Q368.43 40.9 370.01 40.57Q371.59 40.25 373.04 39.59Q374.48 38.94 375.4 37.94Q376.32 36.93 376.32 35.57V33.85Q371.43 33.85 368.21 34.29Q364.98 34.73 363.4 35.66Q361.82 36.59 361.82 38.11Q361.82 39.23 362.57 39.83Q363.32 40.44 364.53 40.67Q365.75 40.9 367.09 40.9Z" fill="currentColor"/></g></svg><span>ATTESTATION</span></div>
+        <b>Numérisation et PDF/A</b>
+        <p>Délivrée à Nom du participant, présent(e) à 100 % de la session du 14 novembre 2026, 7 heures.</p>
+        <div class="f"><small>N° AXA-ATT-26-0417<br>Vérifiable en ligne</small><span class="qr"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="questions" style="padding-top:0" aria-labelledby="fqTitle">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="cote">Questions</span><h2 id="fqTitle">Avant de <em>vous inscrire.</em></h2></div>
+    </div>
+    <div class="faq">
+      <details><summary>Faut-il être à l'aise avec l'informatique ?<i aria-hidden="true">+</i></summary><p>Non pour les modules « Débutant » : savoir utiliser un ordinateur et une messagerie suffit. Les modules « Avancé » supposent d'avoir déjà suivi le module précédent du parcours, ou une expérience équivalente. Nous le vérifions lors de l'échange de départ.</p></details>
+      <details><summary>Les formations sont-elles adaptées à nos outils ?<i aria-hidden="true">+</i></summary><p>Oui. Nous ne vendons pas de logiciel imposé : les principes valent pour toute GED ou tout serveur de fichiers. En intra, nous faisons les exercices dans vos outils. DocuFlow, la GED d'Archivexa, sert d'exemple quand vous n'en avez pas encore.</p></details>
+      <details><summary>Combien de participants par session ?<i aria-hidden="true">+</i></summary><p>De 6 à 14 en salle pour garder du temps de pratique. En direct, jusqu'à 30, avec des exercices individuels lancés par le formateur.</p></details>
+      <details><summary>Une session Live consomme-t-elle beaucoup de données ?<i aria-hidden="true">+</i></summary><p>La salle propose trois niveaux : toutes les vidéos, formateur seulement, ou audio et présentation. Le dernier niveau convient à une connexion mobile modeste. La salle le propose d'elle-même si la connexion faiblit.</p></details>
+      <details><summary>Comment se passe le paiement ?<i aria-hidden="true">+</i></summary><p>Sur devis, après validation du programme. Une facture conforme est émise au nom de votre organisation. Les tarifs des sessions interentreprises sont indiqués à la demande.</p></details>
+      <details><summary>Pouvez-vous former nos formateurs internes ?<i aria-hidden="true">+</i></summary><p>Oui. Le module « Référent archives numériques » prépare une personne à porter la démarche en interne. Nous pouvons ensuite lui remettre les supports pour qu'elle forme ses collègues.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="demande" style="padding-top:0" aria-labelledby="rqTitle">
+  <div class="wrap">
+    <div class="req">
+      <div class="req-side reveal">
+        <span class="cote">Demande</span>
+        <h2 id="rqTitle">Inscrire une personne ou <em style="font-style:normal;font-weight:300;font-stretch:62%;color:var(--volt-hi)">toute l'équipe.</em></h2>
+        <p>Choisissez les modules, le format et le nombre de participants. Nous répondons sous deux jours ouvrés avec un programme et un devis.</p>
+        <div class="direct" id="direct"></div>
+      </div>
+      <form class="rq reveal" id="rq" novalidate>
+        <div>
+          <span class="fl" id="lblMods">Modules choisis</span>
+          <div class="sel-list" id="selList" aria-labelledby="lblMods"></div>
+        </div>
+        <fieldset style="border:0;margin:0;padding:0">
+          <legend class="fl">Format souhaité</legend>
+          <div class="radios">
+            <label><input type="radio" name="fmt" value="Interentreprises (Cotonou)" checked><b>Interentreprises</b><small>Session ouverte à Cotonou</small></label>
+            <label><input type="radio" name="fmt" value="Dans nos locaux"><b>Dans nos locaux</b><small>Pour notre équipe seule</small></label>
+            <label><input type="radio" name="fmt" value="Archivexa Live"><b>Archivexa Live</b><small>À distance, en direct</small></label>
+          </div>
+        </fieldset>
+        <div>
+          <label class="fl" for="ppl">Nombre de participants</label>
+          <div class="people"><input type="range" id="ppl" min="1" max="40" value="5"><output id="pplOut" for="ppl">5</output></div>
+        </div>
+        <div class="fields">
+          <div class="f" id="fName"><label for="name">Nom complet</label><input id="name" autocomplete="name" required></div>
+          <div class="f"><label for="org">Organisation</label><input id="org" autocomplete="organization"></div>
+          <div class="f" id="fMail"><label for="mail">Adresse e-mail</label><input id="mail" type="email" autocomplete="email" required></div>
+          <div class="f"><label for="tel">Téléphone ou WhatsApp</label><input id="tel" type="tel" autocomplete="tel"></div>
+          <div class="f full"><label for="msg">Votre contexte (facultatif)</label><textarea id="msg" placeholder="Outils utilisés, volume de documents, échéance, niveau de l'équipe…"></textarea></div>
+        </div>
+        <div class="hp" aria-hidden="true"><label>Site web<input id="website" tabindex="-1" autocomplete="off"></label></div>
+        <div class="form-foot">
+          <small>Vos données servent uniquement à répondre à cette demande. <a href="/legal#confidentialite">Confidentialité</a></small>
+          <button class="btn btn-main" type="submit" id="send">Envoyer ma demande <span class="arr" aria-hidden="true">→</span></button>
+        </div>
+        <div class="fmsg" id="fmsg" role="status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="basket" id="basket" aria-live="polite"><span><b id="bkN">0</b>module(s) choisi(s)</span><a class="btn btn-main btn-sm" href="#demande">Finaliser <span class="arr" aria-hidden="true">→</span></a></div>
+
+<footer>
+  <div class="wrap">
+    <a href="/" aria-label="Archivexa, retour au site" style="display:block"><svg class="lg" viewBox="0 0 390.5 64" role="img" aria-label="Archivexa"><rect class="lg-bg" width="64" height="64" rx="14" fill="#2f6bff"/><rect class="lg-b1" x="11" y="13" width="42" height="9" rx="2.5" fill="#ffffff"/><rect class="lg-b2" x="14" y="25" width="36" height="26" rx="3" fill="#ffffff"/><rect class="lg-b3" x="25" y="31" width="14" height="5" rx="2" fill="#2f6bff"/><rect class="lg-b4" x="41" y="42" width="13" height="13" rx="3" fill="#a9c6ff" stroke="#2f6bff" stroke-width="3"/><g class="lg-word"><path class="lg-l" d="M94.03 47.28Q91.59 47.28 89.42 46.89Q87.25 46.5 85.59 45.54Q83.93 44.59 82.99 42.93Q82.05 41.27 82.05 38.72Q82.05 35.3 83.8 33.29Q85.55 31.27 88.78 30.29Q92 29.31 96.41 29Q100.83 28.7 106.15 28.7V27.49Q106.15 25.91 105.41 24.93Q104.66 23.95 103.17 23.49Q101.69 23.03 99.39 23.03Q97.62 23.03 96.11 23.33Q94.6 23.62 93.69 24.24Q92.78 24.85 92.78 25.84V26.31H83.12Q83.06 26.08 83.05 25.88Q83.04 25.69 83.04 25.42Q83.04 22.81 84.96 20.83Q86.88 18.85 90.62 17.75Q94.35 16.65 99.8 16.65Q104.88 16.65 108.45 17.62Q112.02 18.59 113.9 20.71Q115.79 22.83 115.79 26.35V38.4Q115.79 39.37 116.25 39.95Q116.71 40.53 117.63 40.53H120.28V46.26Q119.55 46.56 117.98 46.92Q116.41 47.27 114.51 47.27Q112.05 47.27 110.5 46.73Q108.95 46.19 108.13 45.25Q107.32 44.3 106.98 43.13H106.56Q105.13 44.39 103.24 45.34Q101.35 46.28 99.05 46.78Q96.75 47.28 94.03 47.28ZM96.92 40.9Q98.26 40.9 99.84 40.57Q101.42 40.25 102.87 39.59Q104.31 38.94 105.23 37.94Q106.15 36.93 106.15 35.57V33.85Q101.27 33.85 98.04 34.29Q94.81 34.73 93.24 35.66Q91.66 36.59 91.66 38.11Q91.66 39.23 92.4 39.83Q93.15 40.44 94.37 40.67Q95.58 40.9 96.92 40.9Z" fill="currentColor"/><path class="lg-l" d="M122.83 46.61V17.31H130.66L131.34 22.17H131.79Q132.56 20.49 133.78 19.24Q135.01 17.98 136.64 17.3Q138.28 16.62 140.2 16.62Q141.28 16.62 142.22 16.79Q143.17 16.95 143.92 17.24V25.12H139.73Q137.81 25.12 136.44 25.71Q135.06 26.31 134.18 27.37Q133.31 28.44 132.89 29.84Q132.46 31.23 132.46 32.87V46.61Z" fill="currentColor"/><path class="lg-l" d="M163.72 47.28Q158.18 47.28 154.14 45.59Q150.1 43.91 147.91 40.5Q145.73 37.1 145.73 31.95Q145.73 26.79 147.92 23.39Q150.11 19.99 154.15 18.32Q158.18 16.64 163.72 16.64Q167.33 16.64 170.45 17.39Q173.57 18.14 175.93 19.68Q178.29 21.21 179.59 23.51Q180.9 25.8 180.9 28.87H171.21Q171.21 27.13 170.24 25.9Q169.27 24.67 167.59 24.03Q165.91 23.39 163.71 23.39Q161.01 23.39 159.21 24.34Q157.41 25.3 156.52 27.07Q155.62 28.84 155.62 31.3V32.63Q155.62 35.05 156.54 36.84Q157.46 38.62 159.33 39.58Q161.21 40.54 164.05 40.54Q166.24 40.54 167.93 39.85Q169.63 39.15 170.61 37.89Q171.6 36.63 171.6 35H180.9Q180.9 38.1 179.58 40.42Q178.27 42.74 175.93 44.26Q173.59 45.78 170.46 46.53Q167.33 47.28 163.72 47.28Z" fill="currentColor"/><path class="lg-l" d="M185.83 46.61V6.37H195.46V20.9H195.87Q197.23 19.38 198.96 18.45Q200.68 17.52 202.62 17.08Q204.57 16.65 206.54 16.65Q210.47 16.65 213.12 17.94Q215.77 19.23 217.12 21.83Q218.48 24.44 218.48 28.41V46.61H208.84V29.79Q208.84 28.32 208.44 27.23Q208.04 26.13 207.28 25.42Q206.53 24.72 205.42 24.37Q204.32 24.02 202.89 24.02Q200.83 24.02 199.15 24.88Q197.46 25.75 196.46 27.27Q195.46 28.79 195.46 30.79V46.61Z" fill="currentColor"/><path class="lg-l" d="M224.44 13.22V6.37H234.07V13.22ZM224.44 46.61V17.31H234.07V46.61Z" fill="currentColor"/><path class="lg-l" d="M249.85 46.61 236.7 17.31H247.11L252.3 30.12Q252.65 30.96 253.13 32.32Q253.6 33.68 254.12 35.1Q254.63 36.53 255 37.66H255.45Q255.83 36.54 256.31 35.12Q256.8 33.69 257.29 32.33Q257.78 30.96 258.13 30.08L263.24 17.31H273.22L260.05 46.61Z" fill="currentColor"/><path class="lg-l" d="M293.05 47.28Q287.38 47.28 283.23 45.65Q279.09 44.02 276.84 40.62Q274.59 37.22 274.59 31.97Q274.59 26.81 276.81 23.41Q279.03 20 283.09 18.32Q287.15 16.65 292.67 16.65Q298.37 16.65 302.36 18.29Q306.35 19.93 308.43 23.25Q310.52 26.57 310.52 31.63V33.91H284.59Q284.71 36.3 285.71 37.86Q286.71 39.42 288.59 40.16Q290.48 40.89 293.15 40.89Q294.58 40.89 295.9 40.58Q297.22 40.27 298.27 39.68Q299.31 39.09 299.95 38.24Q300.58 37.39 300.65 36.29H310.42Q310.42 38.84 309.17 40.88Q307.92 42.92 305.61 44.35Q303.31 45.77 300.11 46.52Q296.92 47.28 293.05 47.28ZM284.63 28.64H300.35Q300.35 27.28 299.81 26.25Q299.27 25.21 298.28 24.5Q297.29 23.78 295.93 23.41Q294.58 23.04 292.96 23.04Q290.49 23.04 288.72 23.71Q286.94 24.38 285.92 25.64Q284.9 26.9 284.63 28.64Z" fill="currentColor"/><path class="lg-l" d="M312.16 46.61 325.41 31.25 313.21 17.31H325.25L332.12 25.69H332.44L339.28 17.31H350.6L338.29 31.4L351.34 46.61H339.39L331.62 36.99H331.3L323.52 46.61Z" fill="var(--volt-hi)"/><path class="lg-l" d="M364.2 47.28Q361.76 47.28 359.59 46.89Q357.41 46.5 355.75 45.54Q354.1 44.59 353.16 42.93Q352.22 41.27 352.22 38.72Q352.22 35.3 353.97 33.29Q355.72 31.27 358.94 30.29Q362.17 29.31 366.58 29Q370.99 28.7 376.32 28.7V27.49Q376.32 25.91 375.57 24.93Q374.83 23.95 373.34 23.49Q371.86 23.03 369.55 23.03Q367.79 23.03 366.28 23.33Q364.76 23.62 363.85 24.24Q362.94 24.85 362.94 25.84V26.31H353.29Q353.23 26.08 353.22 25.88Q353.21 25.69 353.21 25.42Q353.21 22.81 355.13 20.83Q357.05 18.85 360.78 17.75Q364.52 16.65 369.97 16.65Q375.05 16.65 378.62 17.62Q382.19 18.59 384.07 20.71Q385.96 22.83 385.96 26.35V38.4Q385.96 39.37 386.41 39.95Q386.87 40.53 387.8 40.53H390.44V46.26Q389.72 46.56 388.15 46.92Q386.58 47.27 384.68 47.27Q382.22 47.27 380.67 46.73Q379.12 46.19 378.3 45.25Q377.49 44.3 377.15 43.13H376.73Q375.3 44.39 373.41 45.34Q371.52 46.28 369.22 46.78Q366.92 47.28 364.2 47.28ZM367.09 40.9Q368.43 40.9 370.01 40.57Q371.59 40.25 373.04 39.59Q374.48 38.94 375.4 37.94Q376.32 36.93 376.32 35.57V33.85Q371.43 33.85 368.21 34.29Q364.98 34.73 363.4 35.66Q361.82 36.59 361.82 38.11Q361.82 39.23 362.57 39.83Q363.32 40.44 364.53 40.67Q365.75 40.9 367.09 40.9Z" fill="currentColor"/></g></svg></a>
+    <nav aria-label="Pied de page"><a href="/">Le site</a><a href="/#services">Services</a><a href="/live">Archivexa Live</a><a href="/emplois">Emplois</a><a href="/legal">Mentions légales</a></nav>
+    <small>© <span id="yr">2026</span> Archivexa · Cotonou, Bénin</small>
+  </div>
+</footer>
+
+<script>
+"use strict";
+function $(s,r){return (r||document).querySelector(s)} function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+var CFG = window.ARCHIVEXA || {};
+$('#yr').textContent = new Date().getFullYear();
+
+/* ---------- data ---------- */
+var TRACKS = [
+  {k:'base', n:'Bases du numérique', c:'var(--t-base)', d:"Les bons gestes quotidiens : nommer, classer, partager et protéger ses fichiers et ses e-mails."},
+  {k:'num',  n:'Numérisation', c:'var(--t-num)', d:"Passer du papier au fichier sans perte : qualité, formats pérennes, métadonnées et pilotage de chantier."},
+  {k:'ged',  n:'GED et archivage électronique', c:'var(--t-ged)', d:"Organiser le fonds numérique, garantir la valeur de preuve et préserver dans la durée."},
+  {k:'gouv', n:'Gouvernance, données et IA', c:'var(--t-gouv)', d:"Porter la démarche, respecter la loi et utiliser l'IA sans mettre les archives en danger."}
+];
+var FMT = {salle:'Interentreprises', intra:'Dans vos locaux', live:'Archivexa Live'};
+var MODS = [
+  {code:'NUM-01', t:'base', lvl:'Débutant', dur:'½', unit:'journée', h:3.5, title:'Nommer, classer et partager ses fichiers',
+   pub:'Tous les agents', pre:'Aucun',
+   obj:"Retrouver n'importe quel fichier partagé en quelques secondes, et que les collègues le retrouvent aussi.",
+   prog:['Règles de nommage : dates, versions, abréviations','Arborescence partagée construite sur le plan de classement','Brouillons, versions finales et doublons','Serveur, cloud, messagerie : où ranger quoi','Atelier : réorganiser un dossier partagé réel'],
+   out:['Appliquer une règle de nommage commune','Ranger sans créer de doublon'], f:['salle','intra','live']},
+  {code:'NUM-02', t:'base', lvl:'Débutant', dur:'½', unit:'journée', h:3.5, title:'Archiver ses e-mails et ses échanges',
+   pub:'Assistants, secrétariats, cadres', pre:'Aucun',
+   obj:"Sortir de la boîte de réception les messages qui engagent l'organisation et les classer avec le dossier qu'ils concernent.",
+   prog:["Quels e-mails ont une valeur d'archive","Extraire un message et ses pièces jointes (PDF, EML)","Classer dans le dossier métier plutôt que dans la messagerie","Messageries instantanées : WhatsApp, captures et preuves","Purger sans risque : règles de tri"],
+   out:['Distinguer un e-mail à archiver d\'un e-mail à supprimer','Constituer un dossier complet'], f:['salle','intra','live']},
+  {code:'NUM-03', t:'base', lvl:'Intermédiaire', dur:'1', unit:'jour', h:7, title:'Sécuriser ses documents numériques',
+   pub:'Responsables de service, informaticiens, référents', pre:'NUM-01 ou pratique équivalente',
+   obj:"Protéger les fichiers contre la perte, le vol et la modification : sauvegardes, droits d'accès et supports.",
+   prog:['Panorama des risques : panne, rançongiciel, départ d\'un agent','La règle de sauvegarde 3-2-1 appliquée à un service','Droits d\'accès : qui voit, qui modifie, qui supprime','Clés USB, disques, cloud : avantages et pièges','Plan de reprise : retrouver ses fichiers après un incident'],
+   out:['Rédiger une règle de sauvegarde','Revoir les droits d\'un dossier partagé'], f:['salle','intra','live']},
+  {code:'NUM-04', t:'num', lvl:'Intermédiaire', dur:'1', unit:'jour', h:7, title:'Numérisation et PDF/A',
+   pub:'Agents chargés de la numérisation, archivistes', pre:'Aucun',
+   obj:'Produire des fichiers numérisés lisibles, cherchables et conservables dans la durée.',
+   prog:['Préparer les documents : dépoussiérage, agrafes, ordre','Résolution, couleur et compression selon le document','OCR et format PDF/A : pourquoi et comment','Contrôle qualité : échantillonnage et rejet','Nommage et métadonnées minimales des fichiers produits'],
+   out:['Régler un scanner pour chaque type de document','Valider un lot avant archivage'], f:['salle','intra','live']},
+  {code:'NUM-05', t:'num', lvl:'Avancé', dur:'2', unit:'jours', h:14, title:'Piloter un projet de numérisation',
+   pub:'Chefs de projet, responsables archives, directions', pre:'NUM-04 conseillé',
+   obj:'Cadrer, chiffrer et suivre un chantier de numérisation de masse, en interne ou avec un prestataire.',
+   prog:['Faut-il tout numériser ? Choisir les fonds et les priorités','Volumétrie, cadence et coût réel d\'une page numérisée','Rédiger le cahier des charges d\'un prestataire','Chaîne de traitement et contrôle qualité contractuel','Après la numérisation : que faire du papier ?'],
+   out:['Estimer un budget et un calendrier','Rédiger un cahier des charges'], f:['salle','intra']},
+  {code:'NUM-06', t:'num', lvl:'Intermédiaire', dur:'1', unit:'jour', h:7, title:'Métadonnées, indexation et OCR',
+   pub:'Archivistes, documentalistes, administrateurs de GED', pre:'NUM-04 conseillé',
+   obj:'Décrire les documents numériques pour les retrouver, les trier et les conserver.',
+   prog:['Métadonnées descriptives, techniques et de gestion','Dublin Core et schémas courants, sans jargon','Vocabulaires contrôlés et listes d\'autorité','Qualité de l\'OCR : mesurer et corriger','Atelier : construire la fiche d\'indexation d\'un type de dossier'],
+   out:['Définir les champs utiles d\'un type de document','Mesurer la qualité d\'une indexation'], f:['salle','intra','live']},
+  {code:'NUM-07', t:'ged', lvl:'Débutant', dur:'1', unit:'jour', h:7, title:'Utiliser la GED au quotidien',
+   pub:"Utilisateurs d'une GED (DocuFlow ou autre)", pre:'Aucun',
+   obj:'Déposer, indexer et retrouver ses documents sans repasser par le papier.',
+   prog:['Déposer et indexer un document','Rechercher en plein texte et par métadonnées','Droits d\'accès et partage','Circuits de validation','Bonnes pratiques et erreurs courantes'],
+   out:['Retrouver un document en moins d\'une minute','Faire valider un document dans un circuit'], f:['salle','intra','live']},
+  {code:'NUM-08', t:'ged', lvl:'Avancé', dur:'3', unit:'jours', h:21, title:'Concevoir et déployer une GED',
+   pub:'Chefs de projet, DSI, responsables archives', pre:'NUM-06 ou NUM-07 conseillé',
+   obj:"Mener un projet de GED de l'expression des besoins à l'adoption par les équipes.",
+   prog:['Expression des besoins et cartographie des flux documentaires','Plan de classement numérique et types de documents','Droits, profils et circuits de validation','Choisir un outil : critères, démonstrations, pièges','Migration de l\'existant et conduite du changement'],
+   out:['Rédiger un cahier des charges de GED','Planifier un déploiement par vagues'], f:['salle','intra']},
+  {code:'NUM-09', t:'ged', lvl:'Avancé', dur:'2', unit:'jours', h:14, title:'Archivage électronique à valeur probante',
+   pub:'Archivistes, juristes, DSI, auditeurs', pre:'NUM-06 conseillé',
+   obj:"Garantir qu'un document numérique reste intègre, daté et opposable, des années après sa création.",
+   prog:["Valeur juridique de l'écrit électronique","Système d'archivage électronique (SAE) et modèle OAIS","Intégrité : empreintes, horodatage, journaux","Signature électronique : niveaux et vérification","Normes de référence (NF Z42-013, ISO 14641) et audit"],
+   out:['Distinguer stockage et archivage','Vérifier l\'intégrité d\'un document'], f:['salle','intra','live']},
+  {code:'NUM-10', t:'ged', lvl:'Avancé', dur:'2', unit:'jours', h:14, title:'Préservation numérique à long terme',
+   pub:'Archivistes, administrateurs système', pre:'NUM-09 conseillé',
+   obj:"Maintenir les fichiers lisibles malgré l'obsolescence des formats, des logiciels et des supports.",
+   prog:['Formats ouverts et formats à risque','Identifier et valider les formats d\'un fonds','Stratégies : migration, émulation, normalisation','Supports, copies et contrôles d\'intégrité périodiques','Rédiger un plan de préservation'],
+   out:['Auditer les formats d\'un fonds','Planifier les migrations'], f:['salle','intra']},
+  {code:'NUM-11', t:'gouv', lvl:'Intermédiaire', dur:'1', unit:'jour', h:7, title:'Données personnelles et archives',
+   pub:'Référents, RH, services juridiques, santé', pre:'Aucun',
+   obj:'Conserver ce qui doit l\'être, supprimer à temps, et respecter les droits des personnes.',
+   prog:['Code du numérique du Bénin et rôle de l\'APDP','Durées de conservation et sort final','Accès, rectification, effacement : répondre aux demandes','Dossiers sensibles : santé, personnel, clients','Registre des traitements appliqué aux archives'],
+   out:['Fixer une durée de conservation justifiée','Traiter une demande d\'accès'], f:['salle','intra','live']},
+  {code:'NUM-12', t:'gouv', lvl:'Avancé', dur:'3', unit:'jours', h:21, title:'Référent archives numériques',
+   pub:'Futurs référents, responsables de service', pre:'Un module de chaque parcours, ou expérience équivalente',
+   obj:'Porter la politique documentaire numérique de son organisation et la faire vivre.',
+   prog:['Rédiger une politique d\'archivage numérique','Construire un référentiel de conservation','Auditer les pratiques d\'un service','Indicateurs et tableau de bord','Former et accompagner ses collègues'],
+   out:['Présenter une politique à sa direction','Animer une session interne'], f:['salle','intra']},
+  {code:'NUM-13', t:'gouv', lvl:'Intermédiaire', dur:'1', unit:'jour', h:7, title:"L'IA au service des archives",
+   pub:'Archivistes, documentalistes, curieux avertis', pre:'NUM-06 conseillé',
+   obj:"Utiliser l'IA pour classer, transcrire et rechercher, sans exposer les documents confidentiels.",
+   prog:['Ce que l\'IA sait faire (et rater) sur des archives','Classement et indexation assistés','Transcription d\'écritures manuscrites et d\'enregistrements','Recherche par le sens dans un fonds','Confidentialité : quelles données ne jamais confier'],
+   out:['Tester un outil sur un échantillon','Rédiger une règle d\'usage interne'], f:['salle','intra','live']}
+];
+var PROFILES = [
+  {k:'agent', n:'Agent ou assistant', m:['NUM-01','NUM-02','NUM-07'], d:"Les gestes quotidiens d'abord, puis la GED."},
+  {k:'arch', n:'Archiviste ou documentaliste', m:['NUM-04','NUM-06','NUM-09','NUM-10'], d:'Numériser proprement, décrire, puis garantir la conservation.'},
+  {k:'resp', n:'Responsable de service', m:['NUM-01','NUM-03','NUM-11','NUM-12'], d:'Organiser le service, le sécuriser et porter la démarche.'},
+  {k:'dsi', n:'Informaticien ou DSI', m:['NUM-03','NUM-08','NUM-09','NUM-10'], d:'Sécurité, GED, valeur probante et préservation.'},
+  {k:'dir', n:'Direction', m:['NUM-05','NUM-08','NUM-11'], d:'Décider, budgéter et rester en règle.'},
+  {k:'curieux', n:'Curieux de l\'IA', m:['NUM-06','NUM-13'], d:'Bien décrire avant d\'automatiser.'}
+];
+// Sessions created before this catalogue used FOR-xx codes.
+var LEGACY = {'FOR-02':'NUM-01','FOR-03':'NUM-04','FOR-04':'NUM-07'};
+var ICON = {
+  salle:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l7-4 7 4v13"/></svg>',
+  intra:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5h8v2"/></svg>',
+  live:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="m17 10 5-3v10l-5-3"/></svg>'
+};
+function trackOf(k){ return TRACKS.filter(function(t){ return t.k===k; })[0]; }
+function modOf(c){ return MODS.filter(function(m){ return m.code===c; })[0]; }
+function durTxt(m){ return m.dur + ' ' + m.unit; }
+$('#stMods').textContent = MODS.length;
+
+/* ---------- state ---------- */
+var picked = [], NEXT = {}; // NEXT: module code -> next live session
+try{ picked = JSON.parse(localStorage.getItem('axa-fm-pick') || '[]').filter(modOf); }catch(e){ picked = []; }
+var fState = {q:'', t:'', lvl:'', live:false};
+
+/* ---------- catalogue ---------- */
+function cardHTML(m){
+  var tr = trackOf(m.t), on = picked.indexOf(m.code) > -1, nx = NEXT[m.code];
+  return '<article class="card'+(on?' picked':'')+'" id="'+m.code+'" data-t="'+m.t+'">'+
+    '<div class="c-top"><div><span class="c-code">'+m.code.replace('-','·')+'</span><span class="c-track">'+esc(tr.n)+'</span></div>'+
+    '<div class="c-dur"><b>'+m.dur+'</b><small>'+m.unit+'</small></div></div>'+
+    '<h3>'+esc(m.title)+'</h3><p class="obj">'+esc(m.obj)+'</p>'+
+    '<div class="c-tags"><span class="lv">'+m.lvl+'</span><span>'+esc(m.pub)+'</span></div>'+
+    (nx ? '<div class="c-live"><i></i><span>En direct le '+esc(new Date(nx.date).toLocaleDateString('fr-FR',{day:'numeric',month:'long'}))+'</span><a href="/live?s='+encodeURIComponent(nx.code)+'">Rejoindre →</a></div>' : '')+
+    '<details><summary><i aria-hidden="true">+</i>Programme et objectifs</summary><div class="prog">'+
+      '<ol>'+m.prog.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ol>'+
+      '<div><span class="k">À la fin, vous saurez</span><ul style="margin-top:8px">'+m.out.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>'+
+      '<div><span class="k">Prérequis</span><div style="margin-top:4px;color:var(--muted)">'+esc(m.pre)+'</div></div>'+
+    '</div></details>'+
+    '<div class="c-actions"><div class="c-fmt">'+m.f.map(function(f){ return '<span title="'+FMT[f]+'" aria-label="'+FMT[f]+'">'+ICON[f]+'</span>'; }).join('')+'</div>'+
+    '<button type="button" class="pick" data-pick="'+m.code+'" aria-pressed="'+on+'"><b aria-hidden="true">'+(on?'✓':'+')+'</b>'+(on?'Choisi':'Choisir')+'</button></div>'+
+  '</article>';
+}
+function norm(s){ return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); }
+function renderGrid(){
+  var q = norm(fState.q.trim());
+  var list = MODS.filter(function(m){
+    if(fState.t && m.t !== fState.t) return false;
+    if(fState.lvl && m.lvl !== fState.lvl) return false;
+    if(fState.live && !NEXT[m.code]) return false;
+    if(q){ var hay = norm([m.code, m.title, m.obj, m.pub, m.prog.join(' '), trackOf(m.t).n].join(' ')); if(q.split(/\s+/).some(function(w){ return hay.indexOf(w) < 0; })) return false; }
+    return true;
+  });
+  $('#cnt').textContent = list.length;
+  var cols = colsNow(), span = cols - (list.length % cols);
+  $('#grid').innerHTML = list.length ? list.map(cardHTML).join('') +
+      '<article class="custom" style="grid-column:span '+span+'"><div><span class="cote">Sur mesure</span><h3 style="margin-top:14px">Votre besoin n\'est pas dans la liste ?</h3></div><p>Nous construisons un module à partir de vos documents, de vos outils et de vos délais : migration vers une GED, reprise d\'un fonds numérisé, archivage d\'une application métier…</p><a class="btn btn-main btn-sm" href="#demande">Décrire mon besoin <span class="arr" aria-hidden="true">→</span></a></article>'
+    : '<div class="none">Aucun module ne correspond. <button type="button" class="pick" id="reset" style="margin-left:8px">Tout afficher</button></div>';
+  if($('#reset')) $('#reset').onclick = resetFilters;
+}
+function resetFilters(){ fState = {q:'', t:'', lvl:'', live:false}; $('#q').value=''; $('#lvl').value=''; $('#onlyLive').checked=false; $$('#trackFilter .chip').forEach(function(c){ c.setAttribute('aria-pressed', c.dataset.t===''?'true':'false'); }); renderGrid(); }
+$('#trackFilter').innerHTML = '<button type="button" class="chip" data-t="" aria-pressed="true">Tous</button>' +
+  TRACKS.map(function(t){ return '<button type="button" class="chip" data-t="'+t.k+'" aria-pressed="false"><span class="dot" style="background:'+t.c+'"></span>'+esc(t.n)+'</button>'; }).join('');
+$$('#trackFilter .chip').forEach(function(c){ c.addEventListener('click', function(){ $$('#trackFilter .chip').forEach(function(o){ o.setAttribute('aria-pressed', o===c?'true':'false'); }); fState.t = c.dataset.t; renderGrid(); }); });
+var qt; $('#q').addEventListener('input', function(e){ clearTimeout(qt); qt = setTimeout(function(){ fState.q = e.target.value; renderGrid(); }, 120); });
+$('#lvl').addEventListener('change', function(e){ fState.lvl = e.target.value; renderGrid(); });
+$('#onlyLive').addEventListener('change', function(e){ fState.live = e.target.checked; renderGrid(); });
+$('#grid').addEventListener('click', function(e){ var b = e.target.closest('[data-pick]'); if(b) togglePick(b.dataset.pick); });
+$('#grid').addEventListener('pointermove', function(e){ var c = e.target.closest('.card'); if(!c) return; var r = c.getBoundingClientRect(); c.style.setProperty('--mx',(e.clientX-r.left)+'px'); c.style.setProperty('--my',(e.clientY-r.top)+'px'); });
+
+/* ---------- basket ---------- */
+function savePick(){ try{ localStorage.setItem('axa-fm-pick', JSON.stringify(picked)); }catch(e){} }
+function togglePick(code){
+  var i = picked.indexOf(code); if(i > -1) picked.splice(i,1); else picked.push(code);
+  savePick(); renderGrid(); renderSel();
+}
+function renderSel(){
+  $('#bkN').textContent = picked.length;
+  $('#basket').classList.toggle('on', picked.length > 0 && !formInView);
+  $('#selList').innerHTML = picked.length ? picked.map(function(c){ var m = modOf(c); return '<span class="tagm">'+c.replace('-','·')+' · '+esc(m.title)+'<button type="button" data-unpick="'+c+'" aria-label="Retirer '+esc(m.title)+'">×</button></span>'; }).join('')
+    : '<span class="empty-sel">Aucun module choisi. <a href="#catalogue" style="color:var(--volt-hi)">Parcourir le catalogue</a> ou décrivez votre besoin ci-dessous.</span>';
+}
+$('#selList').addEventListener('click', function(e){ var b = e.target.closest('[data-unpick]'); if(b) togglePick(b.dataset.unpick); });
+var formInView = false;
+if('IntersectionObserver' in window){
+  new IntersectionObserver(function(en){ formInView = en[0].isIntersecting; renderSel(); }, {threshold:.15}).observe($('#demande'));
+}
+
+/* ---------- profiles ---------- */
+$('#profiles').innerHTML = PROFILES.map(function(p){ return '<button type="button" class="chip" data-p="'+p.k+'" aria-pressed="false">'+esc(p.n)+'</button>'; }).join('');
+$$('#profiles .chip').forEach(function(c){ c.addEventListener('click', function(){
+  var on = c.getAttribute('aria-pressed') !== 'true';
+  $$('#profiles .chip').forEach(function(o){ o.setAttribute('aria-pressed', on && o===c ? 'true' : 'false'); });
+  var p = on ? PROFILES.filter(function(x){ return x.k===c.dataset.p; })[0] : null;
+  if(!p){ $('#recoNote').textContent = 'Choisissez un profil : nous vous indiquons les modules à suivre en premier.'; $('#reco').innerHTML = ''; return; }
+  var tot = p.m.reduce(function(a,c){ return a + modOf(c).h; }, 0);
+  $('#recoNote').textContent = p.d + ' Environ ' + Math.round(tot/7*2)/2 + ' jours au total, dans cet ordre :';
+  $('#reco').innerHTML = p.m.map(function(code, i){ var m = modOf(code); return '<a href="#'+code+'" data-go="'+code+'"><small>'+(i+1)+' · '+code.replace('-','·')+' · '+durTxt(m)+'</small><b>'+esc(m.title)+'</b></a>'; }).join('') +
+    '<a href="#demande" data-all="'+p.m.join(',')+'" style="border-style:dashed"><small>Tout ajouter</small><b>Ajouter ces '+p.m.length+' modules à ma demande</b></a>';
+}); });
+document.addEventListener('click', function(e){
+  var a = e.target.closest('[data-go]');
+  if(a){ e.preventDefault(); goTo(a.dataset.go); return; }
+  var all = e.target.closest('[data-all]');
+  if(all){ all.dataset.all.split(',').forEach(function(c){ if(picked.indexOf(c) < 0) picked.push(c); }); savePick(); renderGrid(); renderSel(); }
+});
+function goTo(code){
+  if(!$('#'+code)) resetFilters();
+  var el = $('#'+code); if(!el) return;
+  el.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'center'});
+  el.classList.add('flash'); setTimeout(function(){ el.classList.remove('flash'); }, 1800);
+}
+
+/* ---------- tracks ---------- */
+$('#tracks').innerHTML = TRACKS.map(function(t){
+  var ms = MODS.filter(function(m){ return m.t===t.k; }), h = ms.reduce(function(a,m){ return a+m.h; }, 0);
+  return '<article class="track reveal" style="--c:'+t.c+'"><h3><i></i>'+esc(t.n)+'</h3><p>'+esc(t.d)+'</p><ol>'+
+    ms.map(function(m){ return '<li><a href="#'+m.code+'" data-go="'+m.code+'"><span>'+esc(m.title)+'<small>'+m.code.replace('-','·')+' · '+m.lvl+' · '+durTxt(m)+'</small></span></a></li>'; }).join('')+
+    '</ol><div class="tot">Parcours complet : <b>'+(h/7)+' jours</b> · '+ms.length+' modules</div></article>';
+}).join('');
+
+/* ---------- live sessions ---------- */
+(function(){
+  if(!/^https?:$/.test(location.protocol)) return;
+  fetch('/api/live/sessions').then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
+    if(!j || !j.sessions) return;
+    j.sessions.forEach(function(s){ var c = LEGACY[s.formation] || s.formation; if(modOf(c) && !NEXT[c]) NEXT[c] = s; });
+    renderGrid();
+  }).catch(function(){});
+})();
+
+/* ---------- contact & verification ---------- */
+(function(){
+  var h = '';
+  if(CFG.whatsapp) h += '<a href="https://wa.me/'+encodeURIComponent(CFG.whatsapp)+'?text='+encodeURIComponent('Bonjour Archivexa, je souhaite des informations sur vos formations numériques.')+'" target="_blank" rel="noopener">WhatsApp</a>';
+  if(CFG.email) h += '<a href="mailto:'+esc(CFG.email)+'?subject='+encodeURIComponent('Formations numériques')+'">'+esc(CFG.email)+'</a>';
+  if(CFG.telephone) h += '<a href="tel:'+esc(CFG.telephone.replace(/\s/g,''))+'">'+esc(CFG.telephone)+'</a>';
+  $('#direct').innerHTML = h;
+})();
+$('#verif').addEventListener('submit', function(e){
+  e.preventDefault(); var v = $('#verifIn').value.trim();
+  if(!v){ $('#verifIn').focus(); return; }
+  location.href = '/live?verif=' + encodeURIComponent(v.toUpperCase());
+});
+
+/* ---------- request form ---------- */
+$('#ppl').addEventListener('input', function(e){ $('#pplOut').textContent = e.target.value + (e.target.value==='40' ? '+' : ''); });
+function reqNo(){ var d = new Date(); return 'FOR-' + String(d.getFullYear()).slice(2) + String(d.getMonth()+1).padStart(2,'0') + '-' + Math.random().toString(36).slice(2,6).toUpperCase(); }
+$('#rq').addEventListener('submit', function(e){
+  e.preventDefault();
+  var name = $('#name').value.trim(), mail = $('#mail').value.trim(), m = $('#fmsg'), ok = true;
+  $('#fName').classList.toggle('bad', !name); if(!name) ok = false;
+  var mailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail); $('#fMail').classList.toggle('bad', !mailOk); if(!mailOk) ok = false;
+  if(!ok){ m.className = 'fmsg bad'; m.textContent = 'Indiquez au moins votre nom et une adresse e-mail valide.'; (name ? $('#mail') : $('#name')).focus(); return; }
+  var fmt = ($('input[name=fmt]:checked') || {}).value || '', ppl = +$('#ppl').value, no = reqNo();
+  var mods = picked.map(function(c){ return c + ' ' + modOf(c).title; });
+  var payload = {
+    kind:'formation', session: 'Formation · ' + fmt, needs: mods, sector: '', vol: 0, people: ppl, format: fmt,
+    name: name, org: $('#org').value.trim(), email: mail,
+    msg: [$('#tel').value.trim() ? 'Téléphone : ' + $('#tel').value.trim() : '', 'Participants : ' + ppl + (ppl===40?'+':''), $('#msg').value.trim()].filter(Boolean).join('\n'),
+    no: no, website: $('#website').value
+  };
+  var btn = $('#send'); btn.disabled = true; m.className = 'fmsg'; m.textContent = 'Envoi en cours…';
+  fetch('/api/requests', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)})
+    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(){ done(no, payload); })
+    .catch(function(){
+      btn.disabled = false; m.className = 'fmsg bad';
+      var txt = 'Demande de formation ' + no + '\n' + (mods.join('\n') || 'Modules à définir') + '\nFormat : ' + fmt + '\nParticipants : ' + ppl + '\n' + name + (payload.org ? ' · ' + payload.org : '') + '\n' + mail;
+      m.innerHTML = 'L\'envoi n\'a pas abouti.' + (CFG.whatsapp ? ' <a style="color:inherit" target="_blank" rel="noopener" href="https://wa.me/'+encodeURIComponent(CFG.whatsapp)+'?text='+encodeURIComponent(txt)+'">Envoyer par WhatsApp</a>' : '') + (CFG.email ? ' ou <a style="color:inherit" href="mailto:'+esc(CFG.email)+'?subject='+encodeURIComponent('Demande de formation '+no)+'&body='+encodeURIComponent(txt)+'">par e-mail</a>.' : '');
+    });
+});
+function done(no, p){
+  picked = []; savePick(); renderGrid(); renderSel();
+  $('#rq').innerHTML = '<div class="done" tabindex="-1"><span class="ok"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>'+
+    '<h3>Demande enregistrée</h3><span class="no">N° '+esc(no)+'</span><p>Merci '+esc(p.name.split(' ')[0])+'. Nous vous écrivons à '+esc(p.email)+' sous deux jours ouvrés avec un programme et un devis.</p>'+
+    '<a class="btn" href="/live">Découvrir la salle Live</a></div>';
+  $('#rq .done').focus();
+}
+
+/* ---------- reveal ---------- */
+renderGrid(); renderSel();
+function colsNow(){ return matchMedia('(max-width:660px)').matches ? 1 : matchMedia('(max-width:1060px)').matches ? 2 : 3; }
+var lastCols = colsNow(); addEventListener('resize', function(){ var c = colsNow(); if(c !== lastCols){ lastCols = c; renderGrid(); } });
+if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+  var io = new IntersectionObserver(function(en){ en.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }); }, {rootMargin:'0px 0px -8% 0px'});
+  $$('.reveal').forEach(function(el){ io.observe(el); });
+} else $$('.reveal').forEach(function(el){ el.classList.add('in'); });
+if(location.hash && /^#NUM-\d+$/.test(location.hash)) setTimeout(function(){ goTo(location.hash.slice(1)); }, 300);
+</script>
+</body>
+</html>

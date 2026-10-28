@@ -62,26 +62,26 @@ button,input,select{font:inherit;color:inherit}
 .hall-top{position:relative;display:flex;justify-content:space-between;align-items:center;gap:14px;max-width:1200px;margin:0 auto;padding-block:20px}
 .hall-top a{color:var(--muted);text-decoration:none;font-size:14px}
 .hall-top a:hover{color:var(--ink)}
-.hall-hero{position:relative;max-width:1200px;margin:0 auto;padding-block:clamp(30px,7vw,90px) 40px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,70px);align-items:end}
-@media (max-width:860px){.hall-hero{grid-template-columns:1fr}}
+.hall-hero{position:relative;max-width:1200px;margin:0 auto;padding-block:clamp(30px,6vw,80px) 40px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,70px);align-items:end}
+@media (max-width:900px){.hall-hero{grid-template-columns:minmax(0,1fr)}}
 .kicker{display:inline-flex;align-items:center;gap:10px;color:var(--volt-hi)}
 .kicker i{width:8px;height:8px;border-radius:50%;background:var(--bad);box-shadow:0 0 0 0 rgba(255,107,129,.6);animation:ping 1.8s infinite}
 @keyframes ping{70%{box-shadow:0 0 0 10px rgba(255,107,129,0)}100%{box-shadow:0 0 0 0 rgba(255,107,129,0)}}
-.hall h1{margin:18px 0 0;font-family:var(--f-display);font-weight:900;font-stretch:122%;font-size:clamp(46px,8.4vw,128px);line-height:.88;letter-spacing:-.05em}
+.hall h1{margin:18px 0 0;font-family:var(--f-display);font-weight:900;font-stretch:116%;font-size:clamp(36px,4.9vw,78px);line-height:.88;letter-spacing:-.05em}
 .hall h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
 .hall h1 .ln>span{display:inline-block}
 .hall h1 em{font-style:normal;color:var(--volt-hi);font-weight:300;font-stretch:62%}
 .hall .lead{color:var(--muted);font-size:clamp(16px,1.5vw,19px);max-width:34em;margin:22px 0 0}
-.joinbox{border:1px solid var(--line);border-radius:26px;padding:24px;background:color-mix(in srgb,var(--night-2) 85%,transparent);backdrop-filter:blur(10px);display:grid;gap:14px}
+.joinbox{border:1px solid var(--line);border-radius:26px;padding:24px;background:color-mix(in srgb,var(--night-2) 85%,transparent);backdrop-filter:blur(10px);display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
 .joinbox h2{margin:0;font-family:var(--f-display);font-weight:800;font-stretch:110%;font-size:24px;letter-spacing:-.02em}
 .codein{display:flex;gap:8px;padding:6px;border:1px solid var(--line);border-radius:999px;background:var(--night);transition:border-color .3s,box-shadow .3s}
 .codein:focus-within{border-color:var(--volt-hi);box-shadow:0 0 0 5px color-mix(in srgb,var(--volt) 18%,transparent)}
-.codein input{flex:1;min-width:0;background:none;border:0;outline:none;padding:10px 16px;font-family:var(--f-mono);font-size:16px;letter-spacing:.12em;text-transform:uppercase}
+.codein input{flex:1 1 0;width:0;min-width:0;background:none;border:0;outline:none;padding:10px 16px;font-family:var(--f-mono);font-size:16px;letter-spacing:.12em;text-transform:uppercase}
 .msg{font-size:13.5px;color:var(--muted);min-height:1.3em}
 .msg.bad{color:#ffb4c0}.msg.ok{color:#9ff0c5}
 .feats{display:flex;flex-wrap:wrap;gap:8px}
 .feats span{font-size:12.5px;padding:6px 11px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
-.sess-head{position:relative;max-width:1200px;margin:30px auto 18px;display:flex;justify-content:space-between;align-items:end;gap:14px}
+.sess-head{position:relative;max-width:1200px;margin:30px auto 18px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:14px}
 .sess-head h2{margin:0;font-family:var(--f-display);font-weight:800;font-stretch:110%;font-size:clamp(26px,3vw,40px);letter-spacing:-.03em}
 .sessions{position:relative;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 @media (max-width:980px){.sessions{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -99,6 +99,39 @@ button,input,select{font:inherit;color:inherit}
 .scard p{margin:0;color:var(--muted);font-size:14px}
 .scard .row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:4px}
 .scard .code{font-family:var(--f-mono);font-size:12px;color:var(--ice)}
+.hall-nav{display:flex;align-items:center;gap:22px}
+@media (max-width:560px){.hall-nav .hide-s{display:none}}
+.noco{font-size:13.5px;color:var(--muted)}
+.noco a{color:var(--volt-hi)}
+.scard .fm{font-size:12.5px;color:var(--muted);text-decoration:none;font-family:var(--f-mono);letter-spacing:.06em}
+.scard .fm:hover{color:var(--ice)}
+.scard .prog{height:4px;border-radius:4px;background:var(--line);overflow:hidden}
+.scard .prog i{display:block;height:100%;background:var(--bad);border-radius:inherit}
+.hall-sec{position:relative;max-width:1200px;margin:clamp(60px,8vw,110px) auto 0}
+.hall-sec>h2{margin:0 0 20px;font-family:var(--f-display);font-weight:800;font-stretch:110%;font-size:clamp(26px,3vw,40px);letter-spacing:-.03em}
+.howto{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:24px;overflow:hidden;counter-reset:hw;list-style:none;margin:0;padding:0;background:color-mix(in srgb,var(--night) 70%,transparent);backdrop-filter:blur(6px)}
+@media (max-width:860px){.howto{grid-template-columns:minmax(0,1fr)}}
+.howto li{padding:22px;display:grid;gap:8px;align-content:start;border-right:1px solid var(--line)}
+.howto li:last-child{border-right:0}
+@media (max-width:860px){.howto li{border-right:0;border-bottom:1px solid var(--line)}.howto li:last-child{border-bottom:0}}
+.howto li::before{counter-increment:hw;content:counter(hw,decimal-leading-zero);font-family:var(--f-mono);font-size:12px;color:var(--volt-hi);letter-spacing:.1em}
+.howto b{font-size:16.5px}
+.howto span{color:var(--muted);font-size:14px}
+.tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.tools{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.tools{grid-template-columns:minmax(0,1fr)}}
+.tool{border:1px solid var(--line);border-radius:20px;padding:20px;display:grid;gap:8px;align-content:start;background:linear-gradient(160deg,var(--night-3),var(--night-2) 70%)}
+.tool .ic{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:color-mix(in srgb,var(--volt) 18%,var(--night));color:var(--ice)}
+.tool b{font-size:16px}
+.tool span{color:var(--muted);font-size:14px}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.duo{grid-template-columns:minmax(0,1fr)}}
+.duo>*{border:1px solid var(--line);border-radius:24px;padding:24px;display:grid;gap:12px;align-content:start;background:var(--night-2)}
+.duo h3{margin:0;font-family:var(--f-display);font-weight:800;font-stretch:108%;font-size:22px;letter-spacing:-.02em}
+.duo p{margin:0;color:var(--muted);font-size:14.5px}
+.duo .btn{justify-self:start}
+.hall-foot{position:relative;max-width:1200px;margin:50px auto 0;padding-top:22px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;color:var(--muted);font-size:13px}
+.hall-foot a{color:var(--muted)}
 .empty{grid-column:1/-1;border:1px dashed var(--line);border-radius:18px;padding:26px;text-align:center;color:var(--muted)}
 
 /* ---------- LOBBY ---------- */
@@ -491,8 +524,8 @@ button,input,select{font:inherit;color:inherit}
 <section class="view hall" id="vHall">
   <div class="seats" id="seats" aria-hidden="true"></div>
   <header class="hall-top">
-    <a href="/" id="homeLink" aria-label="Archivexa, retour au site"><svg class="lg" viewBox="0 0 390.5 64" role="img" aria-label="Archivexa"><rect class="lg-bg" width="64" height="64" rx="14" fill="#2f6bff"/><rect class="lg-b1" x="25" y="13" width="14" height="9" rx="2" fill="#a9c6ff"/><rect class="lg-b2" x="17" y="27.5" width="30" height="9" rx="2" fill="#ffffff"/><rect class="lg-b3" x="10" y="42" width="18" height="9" rx="2" fill="#ffffff"/><rect class="lg-b4" x="36" y="42" width="18" height="9" rx="2" fill="#ffffff"/><g class="lg-word"><path class="lg-l" d="M94.03 47.28Q91.59 47.28 89.42 46.89Q87.25 46.5 85.59 45.54Q83.93 44.59 82.99 42.93Q82.05 41.27 82.05 38.72Q82.05 35.3 83.8 33.29Q85.55 31.27 88.78 30.29Q92 29.31 96.41 29Q100.83 28.7 106.15 28.7V27.49Q106.15 25.91 105.41 24.93Q104.66 23.95 103.17 23.49Q101.69 23.03 99.39 23.03Q97.62 23.03 96.11 23.33Q94.6 23.62 93.69 24.24Q92.78 24.85 92.78 25.84V26.31H83.12Q83.06 26.08 83.05 25.88Q83.04 25.69 83.04 25.42Q83.04 22.81 84.96 20.83Q86.88 18.85 90.62 17.75Q94.35 16.65 99.8 16.65Q104.88 16.65 108.45 17.62Q112.02 18.59 113.9 20.71Q115.79 22.83 115.79 26.35V38.4Q115.79 39.37 116.25 39.95Q116.71 40.53 117.63 40.53H120.28V46.26Q119.55 46.56 117.98 46.92Q116.41 47.27 114.51 47.27Q112.05 47.27 110.5 46.73Q108.95 46.19 108.13 45.25Q107.32 44.3 106.98 43.13H106.56Q105.13 44.39 103.24 45.34Q101.35 46.28 99.05 46.78Q96.75 47.28 94.03 47.28ZM96.92 40.9Q98.26 40.9 99.84 40.57Q101.42 40.25 102.87 39.59Q104.31 38.94 105.23 37.94Q106.15 36.93 106.15 35.57V33.85Q101.27 33.85 98.04 34.29Q94.81 34.73 93.24 35.66Q91.66 36.59 91.66 38.11Q91.66 39.23 92.4 39.83Q93.15 40.44 94.37 40.67Q95.58 40.9 96.92 40.9Z" fill="currentColor"/><path class="lg-l" d="M122.83 46.61V17.31H130.66L131.34 22.17H131.79Q132.56 20.49 133.78 19.24Q135.01 17.98 136.64 17.3Q138.28 16.62 140.2 16.62Q141.28 16.62 142.22 16.79Q143.17 16.95 143.92 17.24V25.12H139.73Q137.81 25.12 136.44 25.71Q135.06 26.31 134.18 27.37Q133.31 28.44 132.89 29.84Q132.46 31.23 132.46 32.87V46.61Z" fill="currentColor"/><path class="lg-l" d="M163.72 47.28Q158.18 47.28 154.14 45.59Q150.1 43.91 147.91 40.5Q145.73 37.1 145.73 31.95Q145.73 26.79 147.92 23.39Q150.11 19.99 154.15 18.32Q158.18 16.64 163.72 16.64Q167.33 16.64 170.45 17.39Q173.57 18.14 175.93 19.68Q178.29 21.21 179.59 23.51Q180.9 25.8 180.9 28.87H171.21Q171.21 27.13 170.24 25.9Q169.27 24.67 167.59 24.03Q165.91 23.39 163.71 23.39Q161.01 23.39 159.21 24.34Q157.41 25.3 156.52 27.07Q155.62 28.84 155.62 31.3V32.63Q155.62 35.05 156.54 36.84Q157.46 38.62 159.33 39.58Q161.21 40.54 164.05 40.54Q166.24 40.54 167.93 39.85Q169.63 39.15 170.61 37.89Q171.6 36.63 171.6 35H180.9Q180.9 38.1 179.58 40.42Q178.27 42.74 175.93 44.26Q173.59 45.78 170.46 46.53Q167.33 47.28 163.72 47.28Z" fill="currentColor"/><path class="lg-l" d="M185.83 46.61V6.37H195.46V20.9H195.87Q197.23 19.38 198.96 18.45Q200.68 17.52 202.62 17.08Q204.57 16.65 206.54 16.65Q210.47 16.65 213.12 17.94Q215.77 19.23 217.12 21.83Q218.48 24.44 218.48 28.41V46.61H208.84V29.79Q208.84 28.32 208.44 27.23Q208.04 26.13 207.28 25.42Q206.53 24.72 205.42 24.37Q204.32 24.02 202.89 24.02Q200.83 24.02 199.15 24.88Q197.46 25.75 196.46 27.27Q195.46 28.79 195.46 30.79V46.61Z" fill="currentColor"/><path class="lg-l" d="M224.44 13.22V6.37H234.07V13.22ZM224.44 46.61V17.31H234.07V46.61Z" fill="currentColor"/><path class="lg-l" d="M249.85 46.61 236.7 17.31H247.11L252.3 30.12Q252.65 30.96 253.13 32.32Q253.6 33.68 254.12 35.1Q254.63 36.53 255 37.66H255.45Q255.83 36.54 256.31 35.12Q256.8 33.69 257.29 32.33Q257.78 30.96 258.13 30.08L263.24 17.31H273.22L260.05 46.61Z" fill="currentColor"/><path class="lg-l" d="M293.05 47.28Q287.38 47.28 283.23 45.65Q279.09 44.02 276.84 40.62Q274.59 37.22 274.59 31.97Q274.59 26.81 276.81 23.41Q279.03 20 283.09 18.32Q287.15 16.65 292.67 16.65Q298.37 16.65 302.36 18.29Q306.35 19.93 308.43 23.25Q310.52 26.57 310.52 31.63V33.91H284.59Q284.71 36.3 285.71 37.86Q286.71 39.42 288.59 40.16Q290.48 40.89 293.15 40.89Q294.58 40.89 295.9 40.58Q297.22 40.27 298.27 39.68Q299.31 39.09 299.95 38.24Q300.58 37.39 300.65 36.29H310.42Q310.42 38.84 309.17 40.88Q307.92 42.92 305.61 44.35Q303.31 45.77 300.11 46.52Q296.92 47.28 293.05 47.28ZM284.63 28.64H300.35Q300.35 27.28 299.81 26.25Q299.27 25.21 298.28 24.5Q297.29 23.78 295.93 23.41Q294.58 23.04 292.96 23.04Q290.49 23.04 288.72 23.71Q286.94 24.38 285.92 25.64Q284.9 26.9 284.63 28.64Z" fill="currentColor"/><path class="lg-l" d="M312.16 46.61 325.41 31.25 313.21 17.31H325.25L332.12 25.69H332.44L339.28 17.31H350.6L338.29 31.4L351.34 46.61H339.39L331.62 36.99H331.3L323.52 46.61Z" fill="var(--volt-hi)"/><path class="lg-l" d="M364.2 47.28Q361.76 47.28 359.59 46.89Q357.41 46.5 355.75 45.54Q354.1 44.59 353.16 42.93Q352.22 41.27 352.22 38.72Q352.22 35.3 353.97 33.29Q355.72 31.27 358.94 30.29Q362.17 29.31 366.58 29Q370.99 28.7 376.32 28.7V27.49Q376.32 25.91 375.57 24.93Q374.83 23.95 373.34 23.49Q371.86 23.03 369.55 23.03Q367.79 23.03 366.28 23.33Q364.76 23.62 363.85 24.24Q362.94 24.85 362.94 25.84V26.31H353.29Q353.23 26.08 353.22 25.88Q353.21 25.69 353.21 25.42Q353.21 22.81 355.13 20.83Q357.05 18.85 360.78 17.75Q364.52 16.65 369.97 16.65Q375.05 16.65 378.62 17.62Q382.19 18.59 384.07 20.71Q385.96 22.83 385.96 26.35V38.4Q385.96 39.37 386.41 39.95Q386.87 40.53 387.8 40.53H390.44V46.26Q389.72 46.56 388.15 46.92Q386.58 47.27 384.68 47.27Q382.22 47.27 380.67 46.73Q379.12 46.19 378.3 45.25Q377.49 44.3 377.15 43.13H376.73Q375.3 44.39 373.41 45.34Q371.52 46.28 369.22 46.78Q366.92 47.28 364.2 47.28ZM367.09 40.9Q368.43 40.9 370.01 40.57Q371.59 40.25 373.04 39.59Q374.48 38.94 375.4 37.94Q376.32 36.93 376.32 35.57V33.85Q371.43 33.85 368.21 34.29Q364.98 34.73 363.4 35.66Q361.82 36.59 361.82 38.11Q361.82 39.23 362.57 39.83Q363.32 40.44 364.53 40.67Q365.75 40.9 367.09 40.9Z" fill="currentColor"/></g></svg></a>
-    <a href="/" id="backSite">Retour au site</a>
+    <a href="/" id="homeLink" aria-label="Archivexa, retour au site"><svg class="lg" viewBox="0 0 390.5 64" role="img" aria-label="Archivexa"><rect class="lg-bg" width="64" height="64" rx="14" fill="#2f6bff"/><rect class="lg-b1" x="11" y="13" width="42" height="9" rx="2.5" fill="#ffffff"/><rect class="lg-b2" x="14" y="25" width="36" height="26" rx="3" fill="#ffffff"/><rect class="lg-b3" x="25" y="31" width="14" height="5" rx="2" fill="#2f6bff"/><rect class="lg-b4" x="41" y="42" width="13" height="13" rx="3" fill="#a9c6ff" stroke="#2f6bff" stroke-width="3"/><g class="lg-word"><path class="lg-l" d="M94.03 47.28Q91.59 47.28 89.42 46.89Q87.25 46.5 85.59 45.54Q83.93 44.59 82.99 42.93Q82.05 41.27 82.05 38.72Q82.05 35.3 83.8 33.29Q85.55 31.27 88.78 30.29Q92 29.31 96.41 29Q100.83 28.7 106.15 28.7V27.49Q106.15 25.91 105.41 24.93Q104.66 23.95 103.17 23.49Q101.69 23.03 99.39 23.03Q97.62 23.03 96.11 23.33Q94.6 23.62 93.69 24.24Q92.78 24.85 92.78 25.84V26.31H83.12Q83.06 26.08 83.05 25.88Q83.04 25.69 83.04 25.42Q83.04 22.81 84.96 20.83Q86.88 18.85 90.62 17.75Q94.35 16.65 99.8 16.65Q104.88 16.65 108.45 17.62Q112.02 18.59 113.9 20.71Q115.79 22.83 115.79 26.35V38.4Q115.79 39.37 116.25 39.95Q116.71 40.53 117.63 40.53H120.28V46.26Q119.55 46.56 117.98 46.92Q116.41 47.27 114.51 47.27Q112.05 47.27 110.5 46.73Q108.95 46.19 108.13 45.25Q107.32 44.3 106.98 43.13H106.56Q105.13 44.39 103.24 45.34Q101.35 46.28 99.05 46.78Q96.75 47.28 94.03 47.28ZM96.92 40.9Q98.26 40.9 99.84 40.57Q101.42 40.25 102.87 39.59Q104.31 38.94 105.23 37.94Q106.15 36.93 106.15 35.57V33.85Q101.27 33.85 98.04 34.29Q94.81 34.73 93.24 35.66Q91.66 36.59 91.66 38.11Q91.66 39.23 92.4 39.83Q93.15 40.44 94.37 40.67Q95.58 40.9 96.92 40.9Z" fill="currentColor"/><path class="lg-l" d="M122.83 46.61V17.31H130.66L131.34 22.17H131.79Q132.56 20.49 133.78 19.24Q135.01 17.98 136.64 17.3Q138.28 16.62 140.2 16.62Q141.28 16.62 142.22 16.79Q143.17 16.95 143.92 17.24V25.12H139.73Q137.81 25.12 136.44 25.71Q135.06 26.31 134.18 27.37Q133.31 28.44 132.89 29.84Q132.46 31.23 132.46 32.87V46.61Z" fill="currentColor"/><path class="lg-l" d="M163.72 47.28Q158.18 47.28 154.14 45.59Q150.1 43.91 147.91 40.5Q145.73 37.1 145.73 31.95Q145.73 26.79 147.92 23.39Q150.11 19.99 154.15 18.32Q158.18 16.64 163.72 16.64Q167.33 16.64 170.45 17.39Q173.57 18.14 175.93 19.68Q178.29 21.21 179.59 23.51Q180.9 25.8 180.9 28.87H171.21Q171.21 27.13 170.24 25.9Q169.27 24.67 167.59 24.03Q165.91 23.39 163.71 23.39Q161.01 23.39 159.21 24.34Q157.41 25.3 156.52 27.07Q155.62 28.84 155.62 31.3V32.63Q155.62 35.05 156.54 36.84Q157.46 38.62 159.33 39.58Q161.21 40.54 164.05 40.54Q166.24 40.54 167.93 39.85Q169.63 39.15 170.61 37.89Q171.6 36.63 171.6 35H180.9Q180.9 38.1 179.58 40.42Q178.27 42.74 175.93 44.26Q173.59 45.78 170.46 46.53Q167.33 47.28 163.72 47.28Z" fill="currentColor"/><path class="lg-l" d="M185.83 46.61V6.37H195.46V20.9H195.87Q197.23 19.38 198.96 18.45Q200.68 17.52 202.62 17.08Q204.57 16.65 206.54 16.65Q210.47 16.65 213.12 17.94Q215.77 19.23 217.12 21.83Q218.48 24.44 218.48 28.41V46.61H208.84V29.79Q208.84 28.32 208.44 27.23Q208.04 26.13 207.28 25.42Q206.53 24.72 205.42 24.37Q204.32 24.02 202.89 24.02Q200.83 24.02 199.15 24.88Q197.46 25.75 196.46 27.27Q195.46 28.79 195.46 30.79V46.61Z" fill="currentColor"/><path class="lg-l" d="M224.44 13.22V6.37H234.07V13.22ZM224.44 46.61V17.31H234.07V46.61Z" fill="currentColor"/><path class="lg-l" d="M249.85 46.61 236.7 17.31H247.11L252.3 30.12Q252.65 30.96 253.13 32.32Q253.6 33.68 254.12 35.1Q254.63 36.53 255 37.66H255.45Q255.83 36.54 256.31 35.12Q256.8 33.69 257.29 32.33Q257.78 30.96 258.13 30.08L263.24 17.31H273.22L260.05 46.61Z" fill="currentColor"/><path class="lg-l" d="M293.05 47.28Q287.38 47.28 283.23 45.65Q279.09 44.02 276.84 40.62Q274.59 37.22 274.59 31.97Q274.59 26.81 276.81 23.41Q279.03 20 283.09 18.32Q287.15 16.65 292.67 16.65Q298.37 16.65 302.36 18.29Q306.35 19.93 308.43 23.25Q310.52 26.57 310.52 31.63V33.91H284.59Q284.71 36.3 285.71 37.86Q286.71 39.42 288.59 40.16Q290.48 40.89 293.15 40.89Q294.58 40.89 295.9 40.58Q297.22 40.27 298.27 39.68Q299.31 39.09 299.95 38.24Q300.58 37.39 300.65 36.29H310.42Q310.42 38.84 309.17 40.88Q307.92 42.92 305.61 44.35Q303.31 45.77 300.11 46.52Q296.92 47.28 293.05 47.28ZM284.63 28.64H300.35Q300.35 27.28 299.81 26.25Q299.27 25.21 298.28 24.5Q297.29 23.78 295.93 23.41Q294.58 23.04 292.96 23.04Q290.49 23.04 288.72 23.71Q286.94 24.38 285.92 25.64Q284.9 26.9 284.63 28.64Z" fill="currentColor"/><path class="lg-l" d="M312.16 46.61 325.41 31.25 313.21 17.31H325.25L332.12 25.69H332.44L339.28 17.31H350.6L338.29 31.4L351.34 46.61H339.39L331.62 36.99H331.3L323.52 46.61Z" fill="var(--volt-hi)"/><path class="lg-l" d="M364.2 47.28Q361.76 47.28 359.59 46.89Q357.41 46.5 355.75 45.54Q354.1 44.59 353.16 42.93Q352.22 41.27 352.22 38.72Q352.22 35.3 353.97 33.29Q355.72 31.27 358.94 30.29Q362.17 29.31 366.58 29Q370.99 28.7 376.32 28.7V27.49Q376.32 25.91 375.57 24.93Q374.83 23.95 373.34 23.49Q371.86 23.03 369.55 23.03Q367.79 23.03 366.28 23.33Q364.76 23.62 363.85 24.24Q362.94 24.85 362.94 25.84V26.31H353.29Q353.23 26.08 353.22 25.88Q353.21 25.69 353.21 25.42Q353.21 22.81 355.13 20.83Q357.05 18.85 360.78 17.75Q364.52 16.65 369.97 16.65Q375.05 16.65 378.62 17.62Q382.19 18.59 384.07 20.71Q385.96 22.83 385.96 26.35V38.4Q385.96 39.37 386.41 39.95Q386.87 40.53 387.8 40.53H390.44V46.26Q389.72 46.56 388.15 46.92Q386.58 47.27 384.68 47.27Q382.22 47.27 380.67 46.73Q379.12 46.19 378.3 45.25Q377.49 44.3 377.15 43.13H376.73Q375.3 44.39 373.41 45.34Q371.52 46.28 369.22 46.78Q366.92 47.28 364.2 47.28ZM367.09 40.9Q368.43 40.9 370.01 40.57Q371.59 40.25 373.04 39.59Q374.48 38.94 375.4 37.94Q376.32 36.93 376.32 35.57V33.85Q371.43 33.85 368.21 34.29Q364.98 34.73 363.4 35.66Q361.82 36.59 361.82 38.11Q361.82 39.23 362.57 39.83Q363.32 40.44 364.53 40.67Q365.75 40.9 367.09 40.9Z" fill="currentColor"/></g></svg></a>
+    <nav class="hall-nav" aria-label="Liens"><a href="/formations" class="hide-s">Catalogue des formations</a><a href="/" id="backSite">Retour au site</a></nav>
   </header>
   <div class="hall-hero">
     <div>
@@ -504,12 +537,37 @@ button,input,select{font:inherit;color:inherit}
       <h2>Rejoindre une session</h2>
       <div class="codein"><input id="codeIn" placeholder="AXA-XXXX-XX" autocomplete="off" spellcheck="false" aria-label="Code de session"><button class="btn btn-main" type="submit">Entrer</button></div>
       <div class="msg" id="joinMsg">Le code figure dans votre invitation.</div>
-      <div class="feats"><span>Partage d'écran</span><span>Main levée</span><span>Discussion</span><span>Programme partagé</span><span>Émargement automatique</span></div>
+      <div class="noco">Pas encore de code ? Choisissez une formation dans le <a href="/formations">catalogue</a> : le code vous est envoyé avec l'inscription.</div>
     </form>
   </div>
   <div class="sess-head"><h2>Prochaines sessions</h2><span class="mono" style="color:var(--muted)" id="sessNote"></span></div>
   <div class="sessions" id="sessList"></div>
-  <p style="position:relative;max-width:1200px;margin:40px auto 0;color:var(--muted);font-size:13px"><a href="/legal" data-legal style="color:var(--muted)">Mentions légales</a> · <a href="/legal#confidentialite" data-legal style="color:var(--muted)">Confidentialité</a></p>
+  <div class="hall-sec">
+    <h2>Comment ça se passe</h2>
+    <ol class="howto">
+      <li><b>Inscription</b><span>Vous choisissez une formation. Le code de session arrive avec la confirmation.</span></li>
+      <li><b>Test du matériel</b><span>Quinze minutes avant, vous vérifiez caméra et micro dans la salle d'attente.</span></li>
+      <li><b>La session</b><span>Vous suivez, posez vos questions, faites les exercices avec le groupe.</span></li>
+      <li><b>L'attestation</b><span>Présent au moins 80 % du temps ? Elle vous est délivrée à la fin, avec un QR code.</span></li>
+    </ol>
+  </div>
+  <div class="hall-sec">
+    <h2>Dans la salle</h2>
+    <div class="tools">
+      <div class="tool"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12h3l3-7 4 14 3-7h7"/></svg></span><b>Économie de données</b><span>Trois niveaux, jusqu'à l'audio et la présentation seuls. La salle le propose si la connexion faiblit.</span></div>
+      <div class="tool"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h6l2 2h10v10H3z"/><path d="M12 13h5"/></svg></span><b>Classement en direct</b><span>Le formateur lance un document : chacun le range dans le plan de classement, les réponses s'affichent.</span></div>
+      <div class="tool"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span><b>Partage d'écran</b><span>Supports, démonstrations de GED et documents projetés pour tous.</span></div>
+      <div class="tool"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 11V6a2 2 0 0 1 4 0v5M11 10V4a2 2 0 0 1 4 0v6M15 10V6a2 2 0 0 1 4 0v8a7 7 0 0 1-14 0v-3a2 2 0 0 1 4 0"/></svg></span><b>Main levée et discussion</b><span>Pour poser une question sans couper la parole, ou l'écrire.</span></div>
+      <div class="tool"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span><b>Programme partagé</b><span>Chacun voit où en est la session, le formateur fait avancer les étapes.</span></div>
+      <div class="tool"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span><b>Émargement automatique</b><span>La présence est notée chaque minute. Pas de feuille à faire circuler.</span></div>
+    </div>
+  </div>
+  <div class="hall-sec duo">
+    <div><h3>Trouver une formation</h3><p>Treize modules sur le numérique appliqué aux archives : PDF/A, GED, archivage électronique, préservation, IA. La plupart existent en direct.</p><a class="btn btn-main" href="/formations">Voir le catalogue</a></div>
+    <form id="verifForm" novalidate><div style="display:grid;gap:12px"><h3>Vérifier une attestation</h3><p>Saisissez le numéro inscrit sur l'attestation pour confirmer son authenticité.</p>
+      <div class="codein"><input id="verifNo" placeholder="Numéro d'attestation" autocomplete="off" spellcheck="false" aria-label="Numéro d'attestation"><button class="btn" type="submit">Vérifier</button></div></div></form>
+  </div>
+  <div class="hall-foot"><span>Archivexa Live · Cotonou, Bénin</span><span><a href="/legal" data-legal>Mentions légales</a> · <a href="/legal#confidentialite" data-legal>Confidentialité</a></span></div>
 </section>
 
 <!-- LOBBY -->
@@ -548,7 +606,7 @@ button,input,select{font:inherit;color:inherit}
 <!-- ROOM -->
 <section class="room panel-open" id="vRoom" hidden>
   <header class="rbar">
-    <div class="l"><span class="mark"><svg class="lg" viewBox="0 0 64 64" style="height:30px" aria-hidden="true"><rect class="lg-bg" width="64" height="64" rx="14" fill="#2f6bff"/><rect class="lg-b1" x="25" y="13" width="14" height="9" rx="2" fill="#a9c6ff"/><rect class="lg-b2" x="17" y="27.5" width="30" height="9" rx="2" fill="#ffffff"/><rect class="lg-b3" x="10" y="42" width="18" height="9" rx="2" fill="#ffffff"/><rect class="lg-b4" x="36" y="42" width="18" height="9" rx="2" fill="#ffffff"/></svg></span><div class="t"><b id="rTitle"></b><span id="rCode"></span></div></div>
+    <div class="l"><span class="mark"><svg class="lg" viewBox="0 0 64 64" style="height:30px" aria-hidden="true"><rect class="lg-bg" width="64" height="64" rx="14" fill="#2f6bff"/><rect class="lg-b1" x="11" y="13" width="42" height="9" rx="2.5" fill="#ffffff"/><rect class="lg-b2" x="14" y="25" width="36" height="26" rx="3" fill="#ffffff"/><rect class="lg-b3" x="25" y="31" width="14" height="5" rx="2" fill="#2f6bff"/><rect class="lg-b4" x="41" y="42" width="13" height="13" rx="3" fill="#a9c6ff" stroke="#2f6bff" stroke-width="3"/></svg></span><div class="t"><b id="rTitle"></b><span id="rCode"></span></div></div>
     <button class="modchip" type="button" id="modChip" aria-label="Voir le programme"><span class="k">Module <b id="modChipN">1/5</b></span><span class="v" id="modChipT"></span></button>
     <div class="r"><span class="demochip" id="demoChip" hidden>DÉMO</span><button class="ecochip" type="button" id="ecoChip" hidden aria-label="Mode économie de données"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14zM5 19l7-7"/></svg><span>Éco</span></button><span class="netq q2" id="netq" title="Connexion : bonne" aria-hidden="true"><i></i><i></i><i></i></span><span class="livechip" title="Durée de la session"><i></i><span id="rTimer">00:00</span></span><button class="cnt" type="button" id="rCount" aria-label="Voir les participants"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg><b id="rCountN">1</b><span class="lbl-l">participants</span></button></div>
   </header>
@@ -734,9 +792,9 @@ var SAMPLE = (function(){
   var d = new Date(); function at(days, h, m){ var x = new Date(d); x.setDate(x.getDate()+days); x.setHours(h, m||0, 0, 0); return x.toISOString(); }
   var now = new Date(Date.now() - 10*60000).toISOString();
   return [
-    {code:'AXA-DEMO-01', title:"Les fondamentaux de l'archivage", formation:'FOR-01', date:now, duration:120, trainer:'Daniel CHABI BOUKO', sample:true},
-    {code:'AXA-DEMO-03', title:'Numérisation et PDF/A', formation:'FOR-03', date:at(2,9,30), duration:90, trainer:'Daniel CHABI BOUKO', sample:true},
-    {code:'AXA-DEMO-04', title:'Utiliser la GED au quotidien', formation:'FOR-04', date:at(6,14,0), duration:60, trainer:'Daniel CHABI BOUKO', sample:true}
+    {code:'AXA-DEMO-01', title:'Nommer, classer et partager ses fichiers', formation:'NUM-01', date:now, duration:120, trainer:'Daniel CHABI BOUKO', sample:true},
+    {code:'AXA-DEMO-03', title:'Numérisation et PDF/A', formation:'NUM-04', date:at(2,9,30), duration:90, trainer:'Daniel CHABI BOUKO', sample:true},
+    {code:'AXA-DEMO-04', title:'Utiliser la GED au quotidien', formation:'NUM-07', date:at(6,14,0), duration:60, trainer:'Daniel CHABI BOUKO', sample:true}
   ];
 })();
 var SESSIONS = [];
@@ -752,7 +810,8 @@ function renderSessions(){
   $('#sessList').innerHTML = list.length ? list.map(function(s){
     var d = new Date(s.date), st = stateOf(s);
     return '<article class="scard" data-code="'+esc(s.code)+'"><div class="when"><div class="day">'+d.toLocaleDateString('fr-FR',{day:'2-digit',month:'short'}).replace('.','')+'<small>'+hm(d)+' · '+(s.duration||60)+' min</small></div><span class="state '+st.k+'">'+st.t+'</span></div>'+
-      '<h3>'+esc(s.title)+'</h3><p>Formateur : '+esc(s.trainer||'Archivexa')+'</p><div class="row"><span class="code">'+esc(s.code)+(hosted && !s.sample && st.k==='soon' ? ' · <button type="button" class="ics" data-ics="'+esc(s.code)+'">Me le rappeler</button>' : '')+'</span><button class="btn '+(st.k==='live'?'btn-main':'')+'" type="button" data-join="'+esc(s.code)+'" style="padding:10px 16px;font-size:14px">'+(st.k==='live'?'Rejoindre':'Salle d\'attente')+'</button></div></article>';
+      (st.k==='live' ? '<div class="prog" aria-hidden="true"><i style="width:'+Math.min(100, Math.max(3, (Date.now()-d.getTime())/((s.duration||60)*600)))+'%"></i></div>' : '')+
+      '<h3>'+esc(s.title)+'</h3>'+(/^NUM-\d+$/.test(s.formation||'') ? '<a class="fm" href="/formations#'+esc(s.formation)+'">'+esc(s.formation.replace('-','·'))+' · voir le programme</a>' : '')+'<p>Formateur : '+esc(s.trainer||'Archivexa')+'</p><div class="row"><span class="code">'+esc(s.code)+(hosted && !s.sample && st.k==='soon' ? ' · <button type="button" class="ics" data-ics="'+esc(s.code)+'">Me le rappeler</button>' : '')+'</span><button class="btn '+(st.k==='live'?'btn-main':'')+'" type="button" data-join="'+esc(s.code)+'" style="padding:10px 16px;font-size:14px">'+(st.k==='live'?'Rejoindre':'Salle d\'attente')+'</button></div></article>';
   }).join('') : '<div class="empty">Aucune session programmée pour le moment. Les prochaines dates sont annoncées dans le catalogue de formations.</div>';
   $$('[data-join]').forEach(function(b){ b.onclick = function(){ openLobby(b.dataset.join); }; });
   $$('[data-ics]').forEach(function(b){ b.onclick = function(){ downloadIcs(SESSIONS.filter(function(x){ return x.code===b.dataset.ics; })[0]); }; });
@@ -789,6 +848,11 @@ $('#joinForm').addEventListener('submit', function(e){
   e.preventDefault(); var raw = $('#codeIn').value.trim(), m = $('#joinMsg');
   if(!raw){ m.className='msg bad'; m.textContent='Saisissez le code reçu dans votre invitation, par exemple AXA-7KQ2-LM.'; if(hasG) G.fromTo('.codein',{x:-8},{x:0,duration:.5,ease:'elastic.out(1,.3)'}); return; }
   openLobby(normCode(raw));
+});
+$('#verifForm').addEventListener('submit', function(e){
+  e.preventDefault(); var v = $('#verifNo').value.trim();
+  if(!v){ $('#verifNo').focus(); return; }
+  location.href = location.pathname + '?verif=' + encodeURIComponent(v.toUpperCase());
 });
 (function seats(){
   var s = $('#seats'), n = Math.min(260, Math.floor(innerWidth*innerHeight/2600));
